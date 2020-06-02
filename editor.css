@@ -1,0 +1,190 @@
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+.block-editor-inserter {
+	display: flex !important;
+	justify-content: center;
+}
+.block-editor-button-block-appender {
+	box-shadow:inset 0px 1px 3px 0px #91b8b3;
+	background:linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
+	background-color:#768d87;
+	border-radius:5px;
+	border:1px solid #566963;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:11px 23px;
+	text-decoration:none;
+	text-shadow:0px -1px 0px #2b665e;
+	width: 64px;
+	margin: 0 auto;
+	box-sizing: border-box;
+}
+.block-editor-button-block-appender:hover {
+	background:linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
+	background-color:#6c7c7c;
+}
+.block-editor-button-block-appender:active {
+	position:relative;
+	top:1px;
+}
+
+.wp-block-ecoparts-blocks-ep-section {
+	border: 3px dashed red;
+	background-color: rgb(253, 208, 208);
+	padding: 16px;
+}
+
+.containerOuter {
+	border: 2px solid rgb(1, 50, 141);
+	background-color: rgb(188, 229, 255);
+	padding: 16px;
+}
+
+.containerInner {
+	border: 2px dotted green;
+	background-color: rgb(204, 233, 204);
+	padding: 16px;
+}
+
+.ec-attr-edit-textarea {
+	background-color: lightgrey;
+	border: 1px solid black;
+	height: 24px;
+}
+
+.epTeaserGrey {
+	padding: 16px;
+	background-color: rgb(110, 110, 110);
+}
+
+.epTeaserGrey h3,
+.epTeaserGrey div,
+.epTeaserGrey > p {
+	background-color: lightgrey;
+	padding: 8px;
+}
+
+.epTeaserGrey .linkText {
+	width: 50%;
+}
+
+.epQuote {
+	background-color: darkgrey;
+	padding: 16px;
+}
+
+.epQuote .quote {
+	text-transform: uppercase;
+	text-align: center;
+}
+
+.epQuote .author {
+	color: red;
+	text-align: center;
+}
+
+.wp-block-ecoparts-blocks-ep-teaser-horizontal {
+	background-color: rgb(110, 110, 110);
+	display: flex;
+	flex-direction: column;
+}
+
+.wp-block-ecoparts-blocks-ep-teaser-horizontal > div {
+	width: 100%;
+	padding: 16px;
+}
+
+.wp-block-ecoparts-blocks-ep-teaser-horizontal > div > h3,
+.wp-block-ecoparts-blocks-ep-teaser-horizontal > div > div,
+.wp-block-ecoparts-blocks-ep-teaser-horizontal > div > p,
+.wp-block-ecoparts-blocks-ep-teaser-horizontal > div > button {
+	background-color: lightgray;
+	padding: 8px;
+}
+
+.wp-block-ecoparts-blocks-ep-teaser-horizontal > div > button {
+	height: auto;
+}
+
+.wp-block-ecoparts-blocks-ep-teaser-horizontal > div > button img {
+	width: 100%;
+	height: auto;
+}
+
+.wp-block-ecoparts-blocks-ep-teaser-horizontal .buttonText {
+	background-color: lightgray;
+	border-radius: 10px;
+}
+
+.wp-block-ecoparts-blocks-ep-vorurteil-block > div {
+	background-color: rgb(110, 110, 110);
+	padding: 16px;
+	box-sizing: border-box;
+}
+
+.wp-block-ecoparts-blocks-ep-vorurteil-block > div:first-child {
+	border-bottom: 3px solid white;
+}
+
+.wp-block-ecoparts-blocks-ep-vorurteil-block > div > * {
+	background-color: lightgray;
+	padding: 8px;
+}
+
+.wp-block-ecoparts-blocks-ep-separator {
+	width: 100%;
+	height: 32px;
+	background-color: rgb(110, 110, 110);
+	box-sizing: border-box;
+	position: relative;
+}
+
+.wp-block-ecoparts-blocks-ep-separator::after {
+	display: block;
+	content: '';
+	position: absolute;
+	width: 136px;
+	height: 5px;
+	top: 14px;
+	left: 50%;
+	transform: translateX(-50%);
+	background-color: white;
+}
+
+.wp-block-ecoparts-blocks-ep-teaser-vertical > div {
+	background-color: rgb(110, 110, 110);
+	padding: 16px;
+	box-sizing: border-box;
+}
+
+.wp-block-ecoparts-blocks-ep-teaser-vertical > div > * {
+	background-color: lightgray;
+	padding: 8px;
+}
+
+.wp-block-ecoparts-blocks-ep-teaser-vertical > div > button {
+	height: auto;
+}
+
+.wp-block-ecoparts-blocks-ep-teaser-vertical > div > button img {
+	width: 100%;
+	height: auto;
+}
+
+.wp-block-ecoparts-blocks-ep-innermenu {
+	background-color: rgb(110, 110, 110);
+	padding: 16px;
+	box-sizing: border-box;
+}
+
+.wp-block-ecoparts-blocks-ep-innermenu > * {
+	background-color: lightgray;
+	padding: 8px;
+}
