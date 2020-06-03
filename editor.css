@@ -188,3 +188,25 @@
 	background-color: lightgray;
 	padding: 8px;
 }
+
+.wp-block-ecoparts-blocks-ep-announcement {
+	background-color: rgb(110, 110, 110);
+	padding: 16px;
+	box-sizing: border-box;
+}
+
+.wp-block-ecoparts-blocks-ep-announcement > * {
+	background-color: lightgray;
+	padding: 8px;
+}
+
+.wp-block-ecoparts-blocks-ep-textblock {
+	background-color: rgb(110, 110, 110);
+	padding: 16px;
+	box-sizing: border-box;
+}
+
+.wp-block-ecoparts-blocks-ep-textblock > * {
+	background-color: lightgray;
+	padding: 8px;
+}

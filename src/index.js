@@ -1009,8 +1009,12 @@ registerBlockType('ecoparts-blocks/ep-textblock', {
 
 	attributes: {
 		blockHeader: {
-			source: 'text',
+			source: 'html',
 			selector: '.header',
+		},
+		blockSubheader: {
+			source: 'html',
+			selector: '.subheader',
 		},
 		blockText: {
 			title: 'html',
@@ -1023,12 +1027,17 @@ registerBlockType('ecoparts-blocks/ep-textblock', {
 	edit: (props) => {
 		const {
 			className,
-			attributes: { blockHeader, blockText, blockClass },
+			attributes: { blockHeader, blockSubheader, blockText, blockClass },
 			setAttributes,
 		} = props;
 		const onChangeBlockHeader = (value) => {
 			setAttributes({
 				blockHeader: value,
+			});
+		};
+		const onChangeBlockSubheader = (value) => {
+			setAttributes({
+				blockSubheader: value,
 			});
 		};
 		const onChangeblockText = (value) => {
@@ -1041,10 +1050,17 @@ registerBlockType('ecoparts-blocks/ep-textblock', {
 			<div className={classnames(className, blockClass)}>
 				<RichText
 					className="header"
-					tagName="h3"
+					tagName="h2"
 					placeholder="Enter header here"
 					value={blockHeader}
 					onChange={onChangeBlockHeader}
+				/>
+				<RichText
+					className="subheader"
+					tagName="h3"
+					placeholder="Enter subheader here"
+					value={blockSubheader}
+					onChange={onChangeBlockSubheader}
 				/>
 				<RichText
 					className="text"
@@ -1069,14 +1085,19 @@ registerBlockType('ecoparts-blocks/ep-textblock', {
 	save(props) {
 		const {
 			className,
-			attributes: { blockHeader, blockText, blockClass },
+			attributes: { blockHeader, blockSubheader, blockText, blockClass },
 		} = props;
 		return (
 			<div className={classnames(className, blockClass)}>
 				<RichText.Content
 					className="header"
-					tagName="h3"
+					tagName="h2"
 					value={blockHeader}
+				/>
+				<RichText.Content
+					className="subheader"
+					tagName="h3"
+					value={blockSubheader}
 				/>
 				<RichText.Content
 					className="text"
@@ -1495,6 +1516,166 @@ registerBlockType('ecoparts-blocks/ep-teaser-horizontal', {
 						</a>
 					</div>
 				</div>
+			</div>
+		);
+	},
+});
+
+registerBlockType('ecoparts-blocks/ep-announcement', {
+	/**
+	 * This is the display title for your block, which can be translated with `i18n` functions.
+	 * The block inserter will show this name.
+	 */
+	title: __('EP Announcement', 'ecoparts-blocks'),
+
+	/**
+	 * This is a short description for your block, can be translated with `i18n` functions.
+	 * It will be shown in the Block Tab in the Settings Sidebar.
+	 */
+	description: __(
+		'Announcement',
+		'ecoparts-blocks'
+	),
+
+	/**
+	 * Blocks are grouped into categories to help users browse and discover them.
+	 * The categories provided by core are `common`, `embed`, `formatting`, `layout` and `widgets`.
+	 */
+	category: 'ecoparts-blocks',
+
+	/**
+	 * An icon property should be specified to make it easier to identify a block.
+	 * These can be any of WordPress’ Dashicons, or a custom svg element.
+	 */
+	icon: 'index-card',
+
+	/**
+	 * Optional block extended support features.
+	 */
+	supports: {
+		// Removes support for an HTML mode.
+		html: false,
+	},
+
+	/**
+	 * The edit function describes the structure of your block in the context of the editor.
+	 * This represents what the editor will render when the block is used.
+	 *
+	 * @see https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#edit
+	 *
+	 * @param {Object} [props] Properties passed from the editor.
+	 *
+	 * @return {WPElement} Element to render.
+	 */
+
+	attributes: {
+		blockHeader: {
+			source: 'html',
+			selector: '.header',
+		},
+		blockText: {
+			source: 'html',
+			selector: '.text',
+		},
+		buttonText: {
+			source: 'text',
+			selector: '.buttonText',
+		},
+		url: {
+			type: 'string',
+		},
+		blockClass: {
+			type: 'string',
+		},
+	},
+	edit: (props) => {
+		const {
+			className,
+			attributes: { blockHeader, blockText, buttonText, url, blockClass },
+			setAttributes,
+		} = props;
+		const onChangeBlockHeader = (value) => {
+			setAttributes({
+				blockHeader: value,
+			});
+		};
+		const onChangeBlockText = (value) => {
+			setAttributes({
+				blockText: value,
+			});
+		};
+		const onChangeButtonText = (value) => {
+			setAttributes({
+				buttonText: value,
+			});
+		};
+		setAttributes({ blockClass: 'epAnnons' });
+		return (
+			<>
+				<div className={classnames(className, blockClass)}>
+					<InspectorControls>
+						<PanelBody title={__('Content url')}>
+							<URLInputButton
+								url={url}
+								onChange={(url, post) => setAttributes({ url, text: (post && post.title) || '' })}
+							/>
+						</PanelBody>
+					</InspectorControls>
+					<RichText
+						className="header"
+						tagName="h3"
+						placeholder="Enter header here"
+						value={blockHeader}
+						onChange={onChangeBlockHeader}
+					/>
+					<RichText
+						className="text"
+						tagName="div"
+						placeholder="Enter text here"
+						multiline="p"
+						value={blockText}
+						onChange={onChangeBlockText}
+					/>
+					<RichText
+						className="buttonText"
+						tagName="p"
+						placeholder="Enter button text here"
+						value={buttonText}
+						onChange={onChangeButtonText}
+					/>
+				</div>
+			</>
+		);
+	},
+
+	/**
+	 * The save function defines the way in which the different attributes should be combined
+	 * into the final markup, which is then serialized by the block editor into `post_content`.
+	 *
+	 * @see https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#save
+	 *
+	 * @return {WPElement} Element to render.
+	 */
+	save(props) {
+		const {
+			className,
+			attributes: { blockHeader, blockText, url, buttonText, blockClass },
+		} = props;
+		return (
+			<div className={classnames(className, blockClass)}>
+				<RichText.Content
+					className="header"
+					tagName="h3"
+					value={blockHeader}
+				/>
+				<RichText.Content
+					className="text"
+					tagName="div"
+					value={blockText}
+				/>
+				<a href={url} className="blockLink">
+					<span class="buttonText">{buttonText}</span>
+				</a>
 			</div>
 		);
 	},
