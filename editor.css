@@ -210,3 +210,76 @@
 	background-color: lightgray;
 	padding: 8px;
 }
+.wp-block-ecoparts-blocks-ep-textblock2 {
+	background-color: rgb(110, 110, 110);
+	padding: 16px;
+	box-sizing: border-box;
+}
+
+.wp-block-ecoparts-blocks-ep-textblock2 > * {
+	background-color: lightgray;
+	padding: 8px;
+}
+
+.wp-block-ecoparts-blocks-ep-event > div {
+	background-color: rgb(110, 110, 110);
+	padding: 16px;
+	box-sizing: border-box;
+}
+
+.wp-block-ecoparts-blocks-ep-event > div > * {
+	background-color: lightgray;
+	padding: 8px;
+}
+
+.wp-block-ecoparts-blocks-ep-event-ad {
+	background-color: rgb(110, 110, 110);
+	padding: 16px;
+	box-sizing: border-box;
+}
+
+.wp-block-ecoparts-blocks-ep-event-ad > * {
+	background-color: lightgray;
+	padding: 8px;
+}
+
+.wp-block-ecoparts-blocks-ep-event-ad button {
+	width: 100%;
+	height: auto;
+}
+.wp-block-ecoparts-blocks-ep-event-ad img {
+	width: 100%;
+	height: auto;
+}
+
+.wp-block-ecoparts-blocks-ep-inner-header-1 {
+	background-color: rgb(110, 110, 110);
+	padding: 16px;
+	box-sizing: border-box;
+}
+
+.wp-block-ecoparts-blocks-ep-inner-header-1 > * {
+	background-color: lightgray;
+	padding: 8px;
+}
+.wp-block-ecoparts-blocks-ep-inner-header-2 {
+	background-color: rgb(110, 110, 110);
+	padding: 16px;
+	box-sizing: border-box;
+}
+
+.wp-block-ecoparts-blocks-ep-inner-header-2 > * {
+	background-color: lightgray;
+	padding: 8px;
+}
+
+.wp-block-ecoparts-blocks-ep-single-button {
+	background-color: rgb(110, 110, 110);
+	padding: 16px;
+	box-sizing: border-box;
+}
+
+.wp-block-ecoparts-blocks-ep-single-button > * {
+	background-color: lightgray;
+	padding: 8px;
+}

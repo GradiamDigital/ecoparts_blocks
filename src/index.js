@@ -87,18 +87,48 @@ registerBlockType('ecoparts-blocks/ep-section', {
 		blockClass: {
 			type: 'string',
 		},
+		blockID: {
+			type: 'string',
+		},
+		sectionClass: {
+			type: 'string',
+		}
 	},
 
 
 	edit: (props) => {
 		const {
 			className,
-			attributes: { blockClass },
+			attributes: { blockClass, blockID, sectionClass },
 			setAttributes,
 		} = props;
 		setAttributes({ blockClass: 'section' });
+		const onIdChange = (newValue) => {
+			props.setAttributes({
+				blockID: newValue,
+			});
+		};
+		const onClassChange = (newValue) => {
+			props.setAttributes({
+				sectionClass: newValue,
+			});
+		};
 		return (
-			<div className={classnames(className, blockClass)}>
+			<div id={blockID} className={classnames(className, blockClass, sectionClass)}>
+				<InspectorControls>
+					<PanelBody title={__('Section ID and class')}>
+						<PlainText
+							className='ec-attr-edit-textarea'
+							value={blockID}
+							onChange={onIdChange}
+						/>
+						<PlainText
+							className='ec-attr-edit-textarea'
+							value={sectionClass}
+							onChange={onClassChange}
+						/>
+					</PanelBody>
+				</InspectorControls>
 				<InnerBlocks
 					renderAppender={() => (
 						<InnerBlocks.ButtonBlockAppender />
@@ -119,10 +149,10 @@ registerBlockType('ecoparts-blocks/ep-section', {
 	save(props) {
 		const {
 			className,
-			attributes: { blockClass },
+			attributes: { blockClass, blockID, sectionClass },
 		} = props;
 		return (
-			<section className={classnames(className, blockClass)}>
+			<section id={blockID} className={classnames(className, blockClass, sectionClass)}>
 				<InnerBlocks.Content />
 			</section>
 		);
@@ -267,11 +297,11 @@ registerBlockType( 'ecoparts-blocks/ep-teaser-grey', {
 			selector: '.content',
 		},
 		blockTitle: {
-			title: 'text',
+			source: 'text',
 			selector: '.header',
 		},
 		buttonText: {
-			title: 'textText',
+			source: 'text',
 			selector: '.link',
 		},
 		blockClass: {
@@ -283,6 +313,7 @@ registerBlockType( 'ecoparts-blocks/ep-teaser-grey', {
 		text: {
 			type: 'string',
 		},
+
 	},
 	edit: (props) => {
 		const {
@@ -532,13 +563,19 @@ registerBlockType('ecoparts-blocks/ep-container-inner', {
 		innerWidth: {
 			type: 'string',
 		},
+		innerClass: {
+			type: 'string',
+		},
+		isSlider: {
+			type: 'string',
+		}
 	},
 
 
 	edit: (props) => {
 		const {
 			className,
-			attributes: { blockClass, innerWidth },
+			attributes: { blockClass, innerWidth, innerClass, isSlider },
 			setAttributes,
 		} = props;
 		const onInnerWidthChange = (newValue) => {
@@ -546,6 +583,19 @@ registerBlockType('ecoparts-blocks/ep-container-inner', {
 				innerWidth: newValue,
 			});
 		};
+		const onInnerClassChange = (newValue) => {
+			props.setAttributes({
+				innerClass: newValue,
+			});
+		};
+		const onSliderChange = (newValue) => {
+			props.setAttributes({
+				isSlider: newValue,
+			});
+		};
+		if (!isSlider || isSlider === '') {
+			setAttributes({ isSlider: 'no' });
+		}
 		setAttributes({ blockClass: 'containerInner' });
 		return (
 			<div className={classnames(className, blockClass)}>
@@ -557,6 +607,24 @@ registerBlockType('ecoparts-blocks/ep-container-inner', {
 							onChange={onInnerWidthChange}
 						/>
 					</PanelBody>
+					<PanelBody title={__('Inner class')}>
+						<PlainText
+							className='ec-attr-edit-textarea'
+							value={innerClass}
+							onChange={onInnerClassChange}
+						/>
+					</PanelBody>
+					<SelectControl
+						label={__('Is slider on mobile', 'ecoparts-blocks')}
+						value={isSlider}
+						options={
+							[
+								{ label: 'Is not slider', value: 'no' },
+								{ label: 'Is slider on mobile', value: 'yes' },
+							]
+						}
+						onChange={onSliderChange}
+					/>
 				</InspectorControls>
 				<InnerBlocks
 					renderAppender={() => (
@@ -578,10 +646,10 @@ registerBlockType('ecoparts-blocks/ep-container-inner', {
 	save(props) {
 		const {
 			className,
-			attributes: { blockClass, innerWidth },
+			attributes: { blockClass, innerWidth, innerClass, isSlider },
 		} = props;
 		return (
-			<div className={classnames(className, blockClass)} style={{ width: innerWidth}}>
+			<div className={classnames(className, blockClass, innerClass)} style={{ width: innerWidth}} slideattribute={isSlider}>
 				<InnerBlocks.Content />
 			</div>
 		);
@@ -775,7 +843,7 @@ registerBlockType('ecoparts-blocks/ep-quote', {
 			selector: '.quote',
 		},
 		quoteAuthor: {
-			title: 'text',
+			source: 'text',
 			selector: '.author',
 		},
 		blockClass: {
@@ -898,7 +966,7 @@ registerBlockType('ecoparts-blocks/ep-innermenu', {
 
 	attributes: {
 		blockText: {
-			title: 'html',
+			source: 'html',
 			selector: '.text',
 		},
 		blockClass: {
@@ -960,6 +1028,7 @@ registerBlockType('ecoparts-blocks/ep-innermenu', {
 		);
 	},
 });
+
 registerBlockType('ecoparts-blocks/ep-textblock', {
 	/**
 	 * This is the display title for your block, which can be translated with `i18n` functions.
@@ -1017,7 +1086,7 @@ registerBlockType('ecoparts-blocks/ep-textblock', {
 			selector: '.subheader',
 		},
 		blockText: {
-			title: 'html',
+			source: 'html',
 			selector: '.text',
 		},
 		blockClass: {
@@ -1109,6 +1178,442 @@ registerBlockType('ecoparts-blocks/ep-textblock', {
 	},
 });
 
+registerBlockType('ecoparts-blocks/ep-textblock2', {
+	/**
+	 * This is the display title for your block, which can be translated with `i18n` functions.
+	 * The block inserter will show this name.
+	 */
+	title: __('EP Text Block 2', 'ecoparts-blocks'),
+
+	/**
+	 * This is a short description for your block, can be translated with `i18n` functions.
+	 * It will be shown in the Block Tab in the Settings Sidebar.
+	 */
+	description: __(
+		'Text Block 2',
+		'ecoparts-blocks'
+	),
+
+	/**
+	 * Blocks are grouped into categories to help users browse and discover them.
+	 * The categories provided by core are `common`, `embed`, `formatting`, `layout` and `widgets`.
+	 */
+	category: 'ecoparts-blocks',
+
+	/**
+	 * An icon property should be specified to make it easier to identify a block.
+	 * These can be any of WordPress’ Dashicons, or a custom svg element.
+	 */
+	icon: 'media-text',
+
+	/**
+	 * Optional block extended support features.
+	 */
+	supports: {
+		// Removes support for an HTML mode.
+		html: false,
+	},
+
+	/**
+	 * The edit function describes the structure of your block in the context of the editor.
+	 * This represents what the editor will render when the block is used.
+	 *
+	 * @see https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#edit
+	 *
+	 * @param {Object} [props] Properties passed from the editor.
+	 *
+	 * @return {WPElement} Element to render.
+	 */
+
+	attributes: {
+		blockHeader: {
+			source: 'html',
+			selector: '.header',
+		},
+		blockSubheader: {
+			source: 'html',
+			selector: '.subheader',
+		},
+		blockText: {
+			source: 'html',
+			selector: '.text',
+		},
+		blockClass: {
+			type: 'string',
+		},
+	},
+	edit: (props) => {
+		const {
+			className,
+			attributes: { blockHeader, blockSubheader, blockText, blockClass },
+			setAttributes,
+		} = props;
+		const onChangeBlockHeader = (value) => {
+			setAttributes({
+				blockHeader: value,
+			});
+		};
+		const onChangeBlockSubheader = (value) => {
+			setAttributes({
+				blockSubheader: value,
+			});
+		};
+		const onChangeblockText = (value) => {
+			setAttributes({
+				blockText: value,
+			});
+		};
+		setAttributes({ blockClass: 'epTextBlock2' });
+		return (
+			<div className={classnames(className, blockClass)}>
+				<RichText
+					className="header"
+					tagName="h2"
+					placeholder="Enter header here"
+					value={blockHeader}
+					onChange={onChangeBlockHeader}
+				/>
+				<RichText
+					className="subheader"
+					tagName="h3"
+					placeholder="Enter subheader here"
+					value={blockSubheader}
+					onChange={onChangeBlockSubheader}
+				/>
+				<RichText
+					className="text"
+					tagName="div"
+					placeholder="Enter text here"
+					multiline="p"
+					value={blockText}
+					onChange={onChangeblockText}
+				/>
+			</div>
+		);
+	},
+
+	/**
+	 * The save function defines the way in which the different attributes should be combined
+	 * into the final markup, which is then serialized by the block editor into `post_content`.
+	 *
+	 * @see https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#save
+	 *
+	 * @return {WPElement} Element to render.
+	 */
+	save(props) {
+		const {
+			className,
+			attributes: { blockHeader, blockSubheader, blockText, blockClass },
+		} = props;
+		if (!blockHeader) {
+			return (
+				<div className={classnames(className, blockClass)}>
+					<RichText.Content
+						className="subheader"
+						tagName="h3"
+						value={blockSubheader}
+					/>
+					<RichText.Content
+						className="text"
+						tagName="div"
+						value={blockText}
+					/>
+				</div>
+			);
+		}
+		if (!blockSubheader) {
+			return (
+				<div className={classnames(className, blockClass)}>
+					<RichText.Content
+						className="header"
+						tagName="h2"
+						value={blockHeader}
+					/>
+					<RichText.Content
+						className="text"
+						tagName="div"
+						value={blockText}
+					/>
+				</div>
+			);
+		}
+		return (
+			<div className={classnames(className, blockClass)}>
+				<RichText.Content
+					className="header"
+					tagName="h2"
+					value={blockHeader}
+				/>
+				<RichText.Content
+					className="subheader"
+					tagName="h3"
+					value={blockSubheader}
+				/>
+				<RichText.Content
+					className="text"
+					tagName="div"
+					value={blockText}
+				/>
+			</div>
+		);
+	},
+});
+
+registerBlockType('ecoparts-blocks/ep-event', {
+	/**
+	 * This is the display title for your block, which can be translated with `i18n` functions.
+	 * The block inserter will show this name.
+	 */
+	title: __('EP Event Block', 'ecoparts-blocks'),
+
+	/**
+	 * This is a short description for your block, can be translated with `i18n` functions.
+	 * It will be shown in the Block Tab in the Settings Sidebar.
+	 */
+	description: __(
+		'Event Block',
+		'ecoparts-blocks'
+	),
+
+	/**
+	 * Blocks are grouped into categories to help users browse and discover them.
+	 * The categories provided by core are `common`, `embed`, `formatting`, `layout` and `widgets`.
+	 */
+	category: 'ecoparts-blocks',
+
+	/**
+	 * An icon property should be specified to make it easier to identify a block.
+	 * These can be any of WordPress’ Dashicons, or a custom svg element.
+	 */
+	icon: 'media-text',
+
+	/**
+	 * Optional block extended support features.
+	 */
+	supports: {
+		// Removes support for an HTML mode.
+		html: false,
+	},
+
+	/**
+	 * The edit function describes the structure of your block in the context of the editor.
+	 * This represents what the editor will render when the block is used.
+	 *
+	 * @see https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#edit
+	 *
+	 * @param {Object} [props] Properties passed from the editor.
+	 *
+	 * @return {WPElement} Element to render.
+	 */
+
+	attributes: {
+		eventHeader: {
+			source: 'html',
+			selector: '.header',
+		},
+		eventSubheader: {
+			source: 'html',
+			selector: '.subheader',
+		},
+		eventDate: {
+			source: 'html',
+			selector: '.date',
+		},
+		eventTime: {
+			source: 'html',
+			selector: '.time',
+		},
+		textHeader: {
+			source: 'html',
+			selector: '.textHeader',
+		},
+		eventText: {
+			source: 'html',
+			selector: '.text',
+		},
+		blockCta: {
+			source: 'text',
+			selector: '.cta',
+		},
+		url: {
+			type: 'string',
+		},
+		blockClass: {
+			type: 'string',
+		},
+	},
+	edit: (props) => {
+		const {
+			className,
+			attributes: { eventHeader, eventSubheader, eventDate, eventTime, textHeader, eventText, blockCta, url, blockClass },
+			setAttributes,
+		} = props;
+		const onChangeEventHeader = (value) => {
+			setAttributes({
+				eventHeader: value,
+			});
+		};
+		const onChangeEventSubheader = (value) => {
+			setAttributes({
+				eventSubheader: value,
+			});
+		};
+		const onChangeEventDate = (value) => {
+			setAttributes({
+				eventDate: value,
+			});
+		};
+		const onChangeEventTime = (value) => {
+			setAttributes({
+				eventTime: value,
+			});
+		};
+		const onChangeTextHeader = (value) => {
+			setAttributes({
+				textHeader: value,
+			});
+		};
+		const onChangeEventText = (value) => {
+			setAttributes({
+				eventText: value,
+			});
+		};
+		const onChangeBlockCta = (value) => {
+			setAttributes({
+				blockCta: value,
+			});
+		};
+		setAttributes({ blockClass: 'epEventBlock' });
+		return (
+			<div className={classnames(className, blockClass)}>
+				<InspectorControls>
+					<PanelBody title={__('Event url')}>
+						<URLInputButton
+							url={url}
+							onChange={(url, post) => setAttributes({ url, text: (post && post.title) || '' })}
+						/>
+					</PanelBody>
+				</InspectorControls>
+				<div>
+					<RichText
+						className="header"
+						tagName="h3"
+						placeholder="Enter header here"
+						value={eventHeader}
+						onChange={onChangeEventHeader}
+					/>
+					<RichText
+						className="subheader"
+						tagName="h4"
+						placeholder="Enter subheader here"
+						value={eventSubheader}
+						onChange={onChangeEventSubheader}
+					/>
+					<RichText
+						className="date"
+						tagName="h4"
+						placeholder="Enter date here"
+						value={eventDate}
+						onChange={onChangeEventDate}
+					/>
+					<RichText
+						className="time"
+						tagName="h4"
+						placeholder="Enter time here"
+						value={eventTime}
+						onChange={onChangeEventTime}
+					/>
+				</div>
+				<div>
+					<RichText
+						className="textHeader"
+						tagName="h3"
+						placeholder="Enter text header here"
+						value={textHeader}
+						onChange={onChangeTextHeader}
+					/>
+					<RichText
+						className="text"
+						tagName="div"
+						placeholder="Enter text here"
+						value={eventText}
+						onChange={onChangeEventText}
+					/>
+				</div>
+				<div>
+					<RichText
+						className="cta"
+						tagName="span"
+						placeholder="Enter cta here"
+						value={blockCta}
+						onChange={onChangeBlockCta}
+					/>
+				</div>
+			</div>
+		);
+	},
+
+	/**
+	 * The save function defines the way in which the different attributes should be combined
+	 * into the final markup, which is then serialized by the block editor into `post_content`.
+	 *
+	 * @see https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#save
+	 *
+	 * @return {WPElement} Element to render.
+	 */
+	save(props) {
+		const {
+			className,
+			attributes: { eventHeader, eventSubheader, eventDate, eventTime, textHeader, eventText, blockCta, url, blockClass },
+		} = props;
+		return (
+			<div className={classnames(className, blockClass)}>
+				<div>
+					<RichText.Content
+						className="header"
+						tagName="h3"
+						value={eventHeader}
+					/>
+					<RichText.Content
+						className="subheader"
+						tagName="h4"
+						value={eventSubheader}
+					/>
+					<RichText.Content
+						className="date"
+						tagName="h4"
+						value={eventDate}
+					/>
+					<RichText.Content
+						className="time"
+						tagName="h4"
+						value={eventTime}
+					/>
+				</div>
+				<div>
+					<RichText.Content
+						className="textHeader"
+						tagName="h3"
+						value={textHeader}
+					/>
+					<RichText.Content
+						className="text"
+						tagName="div"
+						value={eventText}
+					/>
+				</div>
+				<a className="url" href={url}>
+					<RichText.Content
+						className="cta"
+						tagName="span"
+						value={blockCta}
+					/>
+				</a>
+			</div>
+		);
+	},
+});
+
 registerBlockType('ecoparts-blocks/ep-vorurteil-block', {
 	/**
 	 * This is the display title for your block, which can be translated with `i18n` functions.
@@ -1162,15 +1667,15 @@ registerBlockType('ecoparts-blocks/ep-vorurteil-block', {
 			selector: '.header',
 		},
 		blockText: {
-			title: 'html',
+			source: 'html',
 			selector: '.text',
 		},
 		blockQuote: {
-			title: 'html',
+			source: 'html',
 			selector: '.quote',
 		},
 		blockCta: {
-			title: 'text',
+			source: 'text',
 			selector: '.cta',
 		},
 		blockClass: {
@@ -1903,6 +2408,545 @@ registerBlockType('ecoparts-blocks/ep-teaser-vertical', {
 					</a>
 				</div>
 			</div>
+		);
+	},
+});
+
+registerBlockType('ecoparts-blocks/ep-event-ad', {
+	/**
+	 * This is the display title for your block, which can be translated with `i18n` functions.
+	 * The block inserter will show this name.
+	 */
+	title: __('EP Event Ad', 'ecoparts-blocks'),
+
+	/**
+	 * This is a short description for your block, can be translated with `i18n` functions.
+	 * It will be shown in the Block Tab in the Settings Sidebar.
+	 */
+	description: __(
+		'Event Ad',
+		'ecoparts-blocks'
+	),
+
+	/**
+	 * Blocks are grouped into categories to help users browse and discover them.
+	 * The categories provided by core are `common`, `embed`, `formatting`, `layout` and `widgets`.
+	 */
+	category: 'ecoparts-blocks',
+
+	/**
+	 * An icon property should be specified to make it easier to identify a block.
+	 * These can be any of WordPress’ Dashicons, or a custom svg element.
+	 */
+	icon: 'pressthis',
+
+	/**
+	 * Optional block extended support features.
+	 */
+	supports: {
+		// Removes support for an HTML mode.
+		html: false,
+	},
+
+	/**
+	 * The edit function describes the structure of your block in the context of the editor.
+	 * This represents what the editor will render when the block is used.
+	 *
+	 * @see https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#edit
+	 *
+	 * @param {Object} [props] Properties passed from the editor.
+	 *
+	 * @return {WPElement} Element to render.
+	 */
+
+	attributes: {
+		mediaID: {
+			type: 'number',
+		},
+		mediaURL: {
+			type: 'string',
+			source: 'attribute',
+			selector: '.image',
+			attribute: 'src',
+		},
+		url: {
+			type: 'string',
+		},
+		blockClass: {
+			type: 'string',
+		},
+	},
+	edit: (props) => {
+		const {
+			className,
+			attributes: { mediaID, mediaURL, url, blockClass },
+			setAttributes,
+		} = props;
+		const onSelectImage = (media) => {
+			setAttributes({
+				mediaURL: media.url,
+				mediaID: media.id,
+			});
+		};
+		setAttributes({ blockClass: 'epEventAd' });
+		return (
+			<>
+				<div className={classnames(className, blockClass)}>
+					<InspectorControls>
+						<PanelBody title={__('Content url')}>
+							<URLInputButton
+								url={url}
+								onChange={(url, post) => setAttributes({ url, text: (post && post.title) || '' })}
+							/>
+						</PanelBody>
+					</InspectorControls>
+					<MediaUpload
+						onSelect={onSelectImage}
+						allowedTypes="image"
+						value={mediaID}
+						render={({ open }) => (
+							<Button
+								className={
+									mediaID
+										? 'image-button'
+										: 'button button-small'
+								}
+								onClick={open}
+							>
+								{!mediaID ? (
+									__('Upload Image', 'ecoparts-blocks')
+								) : (
+										<img
+											src={mediaURL}
+											className="image"
+										/>
+									)}
+							</Button>
+						)}
+					/>
+				</div>
+			</>
+		);
+	},
+
+	/**
+	 * The save function defines the way in which the different attributes should be combined
+	 * into the final markup, which is then serialized by the block editor into `post_content`.
+	 *
+	 * @see https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#save
+	 *
+	 * @return {WPElement} Element to render.
+	 */
+	save(props) {
+		const {
+			className,
+			attributes: { mediaID, mediaURL, url, blockClass },
+		} = props;
+		return (
+			<div className={classnames(className, blockClass)}>
+				<a class="url" href={url} >
+					<img className="image" src={mediaURL} alt="event" />
+				</a>
+			</div>
+		);
+	},
+});
+
+registerBlockType('ecoparts-blocks/ep-inner-header-1', {
+	/**
+	 * This is the display title for your block, which can be translated with `i18n` functions.
+	 * The block inserter will show this name.
+	 */
+	title: __('EP Inner Header 1', 'ecoparts-blocks'),
+
+	/**
+	 * This is a short description for your block, can be translated with `i18n` functions.
+	 * It will be shown in the Block Tab in the Settings Sidebar.
+	 */
+	description: __(
+		'Inner Header 1',
+		'ecoparts-blocks'
+	),
+
+	/**
+	 * Blocks are grouped into categories to help users browse and discover them.
+	 * The categories provided by core are `common`, `embed`, `formatting`, `layout` and `widgets`.
+	 */
+	category: 'ecoparts-blocks',
+
+	/**
+	 * An icon property should be specified to make it easier to identify a block.
+	 * These can be any of WordPress’ Dashicons, or a custom svg element.
+	 */
+	icon: 'sticky',
+
+	/**
+	 * Optional block extended support features.
+	 */
+	supports: {
+		// Removes support for an HTML mode.
+		html: false,
+	},
+
+	/**
+	 * The edit function describes the structure of your block in the context of the editor.
+	 * This represents what the editor will render when the block is used.
+	 *
+	 * @see https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#edit
+	 *
+	 * @param {Object} [props] Properties passed from the editor.
+	 *
+	 * @return {WPElement} Element to render.
+	 */
+
+	attributes: {
+		header: {
+			source: 'html',
+			selector: '.header',
+		},
+		subheader: {
+			source: 'html',
+			selector: '.subheader',
+		},
+	},
+	edit: (props) => {
+		const {
+			className,
+			attributes: { header, subheader, blockClass },
+			setAttributes,
+		} = props;
+		const onChangeBlockHeader = (value) => {
+			setAttributes({
+				header: value,
+			});
+		};
+		const onChangeBlockSubheader = (value) => {
+			setAttributes({
+				subheader: value,
+			});
+		};
+		setAttributes({ blockClass: 'epheader1' });
+		return (
+			<div className={classnames(className, blockClass)}>
+				<RichText
+					className="header"
+					tagName="h1"
+					placeholder="Enter header here"
+					value={header}
+					onChange={onChangeBlockHeader}
+				/>
+				<RichText
+					className="subheader"
+					tagName="h3"
+					placeholder="Enter subheader here"
+					value={subheader}
+					onChange={onChangeBlockSubheader}
+				/>
+			</div>
+		);
+	},
+
+	/**
+	 * The save function defines the way in which the different attributes should be combined
+	 * into the final markup, which is then serialized by the block editor into `post_content`.
+	 *
+	 * @see https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#save
+	 *
+	 * @return {WPElement} Element to render.
+	 */
+	save(props) {
+		const {
+			className,
+			attributes: { header, subheader, blockClass },
+		} = props;
+		if (!subheader) {
+			return (
+				<div className={classnames(className, blockClass)}>
+					<RichText.Content
+						className="header"
+						tagName="h1"
+						value={header}
+					/>
+				</div>
+			);
+		}
+		return (
+			<div className={classnames(className, blockClass)}>
+				<RichText.Content
+					className="header"
+					tagName="h1"
+					value={header}
+				/>
+				<RichText.Content
+					className="subheader"
+					tagName="h3"
+					value={subheader}
+				/>
+			</div>
+		);
+	},
+});
+
+registerBlockType('ecoparts-blocks/ep-inner-header-2', {
+	/**
+	 * This is the display title for your block, which can be translated with `i18n` functions.
+	 * The block inserter will show this name.
+	 */
+	title: __('EP Inner Header 2', 'ecoparts-blocks'),
+
+	/**
+	 * This is a short description for your block, can be translated with `i18n` functions.
+	 * It will be shown in the Block Tab in the Settings Sidebar.
+	 */
+	description: __(
+		'Inner Header 2',
+		'ecoparts-blocks'
+	),
+
+	/**
+	 * Blocks are grouped into categories to help users browse and discover them.
+	 * The categories provided by core are `common`, `embed`, `formatting`, `layout` and `widgets`.
+	 */
+	category: 'ecoparts-blocks',
+
+	/**
+	 * An icon property should be specified to make it easier to identify a block.
+	 * These can be any of WordPress’ Dashicons, or a custom svg element.
+	 */
+	icon: 'sticky',
+
+	/**
+	 * Optional block extended support features.
+	 */
+	supports: {
+		// Removes support for an HTML mode.
+		html: false,
+	},
+
+	/**
+	 * The edit function describes the structure of your block in the context of the editor.
+	 * This represents what the editor will render when the block is used.
+	 *
+	 * @see https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#edit
+	 *
+	 * @param {Object} [props] Properties passed from the editor.
+	 *
+	 * @return {WPElement} Element to render.
+	 */
+
+	attributes: {
+		header: {
+			source: 'html',
+			selector: '.header',
+		},
+		subheader: {
+			source: 'html',
+			selector: '.subheader',
+		},
+	},
+	edit: (props) => {
+		const {
+			className,
+			attributes: { header, subheader, blockClass },
+			setAttributes,
+		} = props;
+		const onChangeBlockHeader = (value) => {
+			setAttributes({
+				header: value,
+			});
+		};
+		const onChangeBlockSubheader = (value) => {
+			setAttributes({
+				subheader: value,
+			});
+		};
+		setAttributes({ blockClass: 'epheader2' });
+		return (
+			<div className={classnames(className, blockClass)}>
+				<RichText
+					className="header"
+					tagName="h1"
+					placeholder="Enter header here"
+					value={header}
+					onChange={onChangeBlockHeader}
+				/>
+				<RichText
+					className="subheader"
+					tagName="h3"
+					placeholder="Enter subheader here"
+					value={subheader}
+					onChange={onChangeBlockSubheader}
+				/>
+			</div>
+		);
+	},
+
+	/**
+	 * The save function defines the way in which the different attributes should be combined
+	 * into the final markup, which is then serialized by the block editor into `post_content`.
+	 *
+	 * @see https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#save
+	 *
+	 * @return {WPElement} Element to render.
+	 */
+	save(props) {
+		const {
+			className,
+			attributes: { header, subheader, blockClass },
+		} = props;
+		if (!subheader) {
+			return (
+				<div className={classnames(className, blockClass)}>
+					<RichText.Content
+						className="header"
+						tagName="h1"
+						value={header}
+					/>
+				</div>
+			);
+		}
+		return (
+			<div className={classnames(className, blockClass)}>
+				<RichText.Content
+					className="header"
+					tagName="h1"
+					value={header}
+				/>
+				<RichText.Content
+					className="subheader"
+					tagName="h3"
+					value={subheader}
+				/>
+			</div>
+		);
+	},
+});
+
+registerBlockType('ecoparts-blocks/ep-single-button', {
+	/**
+	 * This is the display title for your block, which can be translated with `i18n` functions.
+	 * The block inserter will show this name.
+	 */
+	title: __('EP Single Buttonl', 'ecoparts-blocks'),
+
+	/**
+	 * This is a short description for your block, can be translated with `i18n` functions.
+	 * It will be shown in the Block Tab in the Settings Sidebar.
+	 */
+	description: __(
+		'Single Button',
+		'ecoparts-blocks'
+	),
+
+	/**
+	 * Blocks are grouped into categories to help users browse and discover them.
+	 * The categories provided by core are `common`, `embed`, `formatting`, `layout` and `widgets`.
+	 */
+	category: 'ecoparts-blocks',
+
+	/**
+	 * An icon property should be specified to make it easier to identify a block.
+	 * These can be any of WordPress’ Dashicons, or a custom svg element.
+	 */
+	icon: 'yes',
+
+	/**
+	 * Optional block extended support features.
+	 */
+	supports: {
+		// Removes support for an HTML mode.
+		html: false,
+	},
+
+	/**
+	 * The edit function describes the structure of your block in the context of the editor.
+	 * This represents what the editor will render when the block is used.
+	 *
+	 * @see https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#edit
+	 *
+	 * @param {Object} [props] Properties passed from the editor.
+	 *
+	 * @return {WPElement} Element to render.
+	 */
+
+	attributes: {
+		buttonText: {
+			source: 'text',
+			selector: '.button',
+		},
+		url: {
+			type: 'string',
+		},
+		blockClass: {
+			type: 'string',
+		},
+		onClick: {
+			type: 'string',
+			source: 'meta',
+			selector: '.button',
+			meta: 'onclick'
+		},
+	},
+	edit: (props) => {
+		const {
+			className,
+			attributes: { buttonText, url, onClick, blockClass },
+			setAttributes,
+		} = props;
+		const onChangeButtonText = (value) => {
+			setAttributes({
+				buttonText: value,
+			});
+		};
+		const onChangeButtonOnclick = (value) => {
+			setAttributes({
+				onClick: value,
+			});
+		};
+		setAttributes({ blockClass: 'epSingleBtn' });
+		return (
+			<>
+				<div className={classnames(className, blockClass)}>
+					<InspectorControls>
+						<PanelBody title={__('Content url')}>
+							<URLInputButton
+								url={url}
+								onChange={(url, post) => setAttributes({ url, text: (post && post.title) || '' })}
+							/>
+						</PanelBody>
+					</InspectorControls>
+					<PlainText
+						placeholder="Enter button text"
+						value={buttonText}
+						onChange={onChangeButtonText}
+					/>
+					<PlainText
+						placeholder="Enter button onclick"
+						value={onClick}
+						onChange={onChangeButtonOnclick}
+					/>
+				</div>
+			</>
+		);
+	},
+
+	/**
+	 * The save function defines the way in which the different attributes should be combined
+	 * into the final markup, which is then serialized by the block editor into `post_content`.
+	 *
+	 * @see https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#save
+	 *
+	 * @return {WPElement} Element to render.
+	 */
+	save(props) {
+		const {
+			className,
+			attributes: { buttonText, url, onClick, blockClass },
+		} = props;
+		return (
+			<a href className={classnames(className, blockClass, 'button')} onclick={onClick} href={url}>
+				{buttonText}
+			</a>
 		);
 	},
 });
