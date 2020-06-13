@@ -283,3 +283,35 @@
 	background-color: lightgray;
 	padding: 8px;
 }
+
+
+.wp-block-ecoparts-blocks-ep-single-image {
+	background-color: rgb(110, 110, 110);
+	padding: 16px;
+	box-sizing: border-box;
+}
+
+.wp-block-ecoparts-blocks-ep-single-image > * {
+	background-color: lightgray;
+	padding: 8px;
+}
+
+.wp-block-ecoparts-blocks-ep-single-image button {
+	width: 100%;
+	height: auto;
+}
+.wp-block-ecoparts-blocks-ep-single-image img {
+	width: 100%;
+	height: auto;
+}
+
+.wp-block-ecoparts-blocks-ep-post-text {
+	border: 1px dashed #000000;
+	background-color: rgb(110, 110, 110);
+	padding: 16px;
+}
+
+.wp-block-ecoparts-blocks-ep-post-text > * {
+	background-color: lightgray;
+	padding: 8px;
+}

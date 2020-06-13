@@ -3062,6 +3062,256 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])('eco
     }, "href", url), buttonText);
   }
 });
+Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])("ecoparts-blocks/ep-single-image", {
+  /**
+   * This is the display title for your block, which can be translated with `i18n` functions.
+   * The block inserter will show this name.
+   */
+  title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["__"])("EP Single Image", "ecoparts-blocks"),
+
+  /**
+   * This is a short description for your block, can be translated with `i18n` functions.
+   * It will be shown in the Block Tab in the Settings Sidebar.
+   */
+  description: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["__"])("Single Image", "ecoparts-blocks"),
+
+  /**
+   * Blocks are grouped into categories to help users browse and discover them.
+   * The categories provided by core are `common`, `embed`, `formatting`, `layout` and `widgets`.
+   */
+  category: "ecoparts-blocks",
+
+  /**
+   * An icon property should be specified to make it easier to identify a block.
+   * These can be any of WordPress’ Dashicons, or a custom svg element.
+   */
+  icon: "format-image",
+
+  /**
+   * Optional block extended support features.
+   */
+  supports: {
+    // Removes support for an HTML mode.
+    html: false
+  },
+
+  /**
+   * The edit function describes the structure of your block in the context of the editor.
+   * This represents what the editor will render when the block is used.
+   *
+   * @see https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#edit
+   *
+   * @param {Object} [props] Properties passed from the editor.
+   *
+   * @return {WPElement} Element to render.
+   */
+  attributes: {
+    mediaID: {
+      type: "number"
+    },
+    mediaURL: {
+      type: "string",
+      source: "attribute",
+      selector: ".image",
+      attribute: "src"
+    },
+    alt: {
+      type: "string"
+    },
+    blockClass: {
+      type: "string"
+    }
+  },
+  edit: function edit(props) {
+    var className = props.className,
+        _props$attributes35 = props.attributes,
+        mediaID = _props$attributes35.mediaID,
+        mediaURL = _props$attributes35.mediaURL,
+        alt = _props$attributes35.alt,
+        blockClass = _props$attributes35.blockClass,
+        setAttributes = props.setAttributes;
+
+    var onChangeAlt = function onChangeAlt(value) {
+      setAttributes({
+        alt: value
+      });
+    };
+
+    var onSelectImage = function onSelectImage(media) {
+      setAttributes({
+        mediaURL: media.url,
+        mediaID: media.id
+      });
+    };
+
+    setAttributes({
+      blockClass: "epSingleImage"
+    });
+    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
+      className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(className, blockClass)
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["PlainText"], {
+      className: "alt",
+      placeholder: "Enter alt text here",
+      value: alt,
+      onChange: onChangeAlt
+    }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["MediaUpload"], {
+      onSelect: onSelectImage,
+      allowedTypes: "image",
+      value: mediaID,
+      render: function render(_ref5) {
+        var open = _ref5.open;
+        return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["Button"], {
+          className: mediaID ? "image-button" : "button button-small",
+          onClick: open
+        }, !mediaID ? Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["__"])("Upload Image", "ecoparts-blocks") : Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("img", {
+          src: mediaURL,
+          alt: alt,
+          className: "image"
+        }));
+      }
+    })));
+  },
+
+  /**
+   * The save function defines the way in which the different attributes should be combined
+   * into the final markup, which is then serialized by the block editor into `post_content`.
+   *
+   * @see https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#save
+   *
+   * @return {WPElement} Element to render.
+   */
+  save: function save(props) {
+    var className = props.className,
+        _props$attributes36 = props.attributes,
+        mediaURL = _props$attributes36.mediaURL,
+        alt = _props$attributes36.alt,
+        blockClass = _props$attributes36.blockClass;
+    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
+      className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(className, blockClass)
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("img", {
+      className: "image",
+      src: mediaURL,
+      alt: alt
+    }));
+  }
+});
+Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])('ecoparts-blocks/ep-post-text', {
+  /**
+   * This is the display title for your block, which can be translated with `i18n` functions.
+   * The block inserter will show this name.
+   */
+  title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["__"])('EP Post Text', 'ecoparts-blocks'),
+
+  /**
+   * This is a short description for your block, can be translated with `i18n` functions.
+   * It will be shown in the Block Tab in the Settings Sidebar.
+   */
+  description: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["__"])('Custom text container for Ecoparts theme', 'ecoparts-blocks'),
+
+  /**
+   * Blocks are grouped into categories to help users browse and discover them.
+   * The categories provided by core are `common`, `embed`, `formatting`, `layout` and `widgets`.
+   */
+  category: 'ecoparts-blocks',
+
+  /**
+   * An icon property should be specified to make it easier to identify a block.
+   * These can be any of WordPress’ Dashicons, or a custom svg element.
+   */
+  icon: 'welcome-add-page',
+
+  /**
+   * Optional block extended support features.
+   */
+  supports: {
+    // Removes support for an HTML mode.
+    html: false
+  },
+
+  /**
+   * The edit function describes the structure of your block in the context of the editor.
+   * This represents what the editor will render when the block is used.
+   *
+   * @see https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#edit
+   *
+   * @param {Object} [props] Properties passed from the editor.
+   *
+   * @return {WPElement} Element to render.
+   */
+  attributes: {
+    blockClass: {
+      type: 'string'
+    },
+    blockID: {
+      type: 'string'
+    },
+    sectionClass: {
+      type: 'string'
+    }
+  },
+  edit: function edit(props) {
+    var className = props.className,
+        _props$attributes37 = props.attributes,
+        blockClass = _props$attributes37.blockClass,
+        blockID = _props$attributes37.blockID,
+        sectionClass = _props$attributes37.sectionClass,
+        setAttributes = props.setAttributes;
+    setAttributes({
+      blockClass: 'epPostText'
+    });
+
+    var onIdChange = function onIdChange(newValue) {
+      props.setAttributes({
+        blockID: newValue
+      });
+    };
+
+    var onClassChange = function onClassChange(newValue) {
+      props.setAttributes({
+        sectionClass: newValue
+      });
+    };
+
+    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
+      id: blockID,
+      className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(className, blockClass, sectionClass)
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["InspectorControls"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["PanelBody"], {
+      title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["__"])('Container ID and class')
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["PlainText"], {
+      className: "ec-attr-edit-textarea",
+      value: blockID,
+      onChange: onIdChange
+    }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["PlainText"], {
+      className: "ec-attr-edit-textarea",
+      value: sectionClass,
+      onChange: onClassChange
+    }))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["InnerBlocks"], {
+      renderAppender: function renderAppender() {
+        return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["InnerBlocks"].ButtonBlockAppender, null);
+      }
+    }));
+  },
+
+  /**
+   * The save function defines the way in which the different attributes should be combined
+   * into the final markup, which is then serialized by the block editor into `post_content`.
+   *
+   * @see https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#save
+   *
+   * @return {WPElement} Element to render.
+   */
+  save: function save(props) {
+    var className = props.className,
+        _props$attributes38 = props.attributes,
+        blockClass = _props$attributes38.blockClass,
+        blockID = _props$attributes38.blockID,
+        sectionClass = _props$attributes38.sectionClass;
+    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
+      id: blockID,
+      className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(className, blockClass, sectionClass)
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["InnerBlocks"].Content, null));
+  }
+});
 
 /***/ }),
 

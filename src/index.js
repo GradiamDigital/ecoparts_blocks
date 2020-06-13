@@ -467,18 +467,38 @@ registerBlockType('ecoparts-blocks/ep-container-outer', {
 		blockClass: {
 			type: 'string',
 		},
+		outerClass: {
+			type: 'string',
+		}
 	},
 
 
 	edit: (props) => {
 		const {
 			className,
-			attributes: { blockClass },
+			attributes: {
+				blockClass,
+				outerClass,
+			},
 			setAttributes,
 		} = props;
 		setAttributes({ blockClass: 'containerOuter' });
+		const onOuterClassChange = (newValue) => {
+			props.setAttributes({
+				outerClass: newValue,
+			});
+		};
 		return (
-			<div className={classnames(className, blockClass)}>
+			<div className={classnames(className, blockClass, outerClass)}>
+				<InspectorControls>
+					<PanelBody title={__('Outer class')}>
+						<PlainText
+							className='ec-attr-edit-textarea'
+							value={outerClass}
+							onChange={onOuterClassChange}
+						/>
+					</PanelBody>
+				</InspectorControls>
 				<InnerBlocks
 					renderAppender={() => (
 						<InnerBlocks.ButtonBlockAppender />
@@ -499,10 +519,10 @@ registerBlockType('ecoparts-blocks/ep-container-outer', {
 	save(props) {
 		const {
 			className,
-			attributes: { blockClass },
+			attributes: { blockClass, outerClass },
 		} = props;
 		return (
-			<div className={classnames(className, blockClass)}>
+			<div className={classnames(className, blockClass, outerClass)}>
 				<InnerBlocks.Content />
 			</div>
 		);
@@ -2947,6 +2967,269 @@ registerBlockType('ecoparts-blocks/ep-single-button', {
 			<a href className={classnames(className, blockClass, 'button')} onclick={onClick} href={url}>
 				{buttonText}
 			</a>
+		);
+	},
+});
+
+registerBlockType("ecoparts-blocks/ep-single-image", {
+	/**
+	 * This is the display title for your block, which can be translated with `i18n` functions.
+	 * The block inserter will show this name.
+	 */
+	title: __("EP Single Image", "ecoparts-blocks"),
+
+	/**
+	 * This is a short description for your block, can be translated with `i18n` functions.
+	 * It will be shown in the Block Tab in the Settings Sidebar.
+	 */
+	description: __("Single Image", "ecoparts-blocks"),
+
+	/**
+	 * Blocks are grouped into categories to help users browse and discover them.
+	 * The categories provided by core are `common`, `embed`, `formatting`, `layout` and `widgets`.
+	 */
+	category: "ecoparts-blocks",
+
+	/**
+	 * An icon property should be specified to make it easier to identify a block.
+	 * These can be any of WordPress’ Dashicons, or a custom svg element.
+	 */
+	icon: "format-image",
+
+	/**
+	 * Optional block extended support features.
+	 */
+	supports: {
+		// Removes support for an HTML mode.
+		html: false,
+	},
+
+	/**
+	 * The edit function describes the structure of your block in the context of the editor.
+	 * This represents what the editor will render when the block is used.
+	 *
+	 * @see https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#edit
+	 *
+	 * @param {Object} [props] Properties passed from the editor.
+	 *
+	 * @return {WPElement} Element to render.
+	 */
+
+	attributes: {
+		mediaID: {
+			type: "number",
+		},
+		mediaURL: {
+			type: "string",
+			source: "attribute",
+			selector: ".image",
+			attribute: "src",
+		},
+		alt: {
+			type: "string",
+		},
+		blockClass: {
+			type: "string",
+		},
+	},
+	edit: (props) => {
+		const {
+			className,
+			attributes: {
+				mediaID,
+				mediaURL,
+				alt,
+				blockClass,
+			},
+			setAttributes,
+		} = props;
+		const onChangeAlt = (value) => {
+			setAttributes({
+				alt: value,
+			});
+		};
+		const onSelectImage = (media) => {
+			setAttributes({
+				mediaURL: media.url,
+				mediaID: media.id,
+			});
+		};
+		setAttributes({ blockClass: "epSingleImage" });
+		return (
+			<>
+				<div className={classnames(className, blockClass)}>
+					<PlainText
+						className="alt"
+						placeholder="Enter alt text here"
+						value={alt}
+						onChange={onChangeAlt}
+					/>
+					<MediaUpload
+						onSelect={onSelectImage}
+						allowedTypes="image"
+						value={mediaID}
+						render={({ open }) => (
+							<Button
+								className={mediaID ? "image-button" : "button button-small"}
+								onClick={open}
+							>
+								{!mediaID ? (
+									__("Upload Image", "ecoparts-blocks")
+								) : (
+									<img src={mediaURL} alt={alt} className="image" />
+								)}
+							</Button>
+						)}
+					/>
+				</div>
+			</>
+		);
+	},
+
+	/**
+	 * The save function defines the way in which the different attributes should be combined
+	 * into the final markup, which is then serialized by the block editor into `post_content`.
+	 *
+	 * @see https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#save
+	 *
+	 * @return {WPElement} Element to render.
+	 */
+	save(props) {
+		const {
+			className,
+			attributes: {
+				mediaURL,
+				alt,
+				blockClass,
+			},
+		} = props;
+		return (
+			<div className={classnames(className, blockClass)}>
+				<img className="image" src={mediaURL} alt={alt} />
+			</div>
+		);
+	},
+});
+
+registerBlockType('ecoparts-blocks/ep-post-text', {
+	/**
+	 * This is the display title for your block, which can be translated with `i18n` functions.
+	 * The block inserter will show this name.
+	 */
+	title: __('EP Post Text', 'ecoparts-blocks'),
+
+	/**
+	 * This is a short description for your block, can be translated with `i18n` functions.
+	 * It will be shown in the Block Tab in the Settings Sidebar.
+	 */
+	description: __(
+		'Custom text container for Ecoparts theme',
+		'ecoparts-blocks'
+	),
+
+	/**
+	 * Blocks are grouped into categories to help users browse and discover them.
+	 * The categories provided by core are `common`, `embed`, `formatting`, `layout` and `widgets`.
+	 */
+	category: 'ecoparts-blocks',
+
+	/**
+	 * An icon property should be specified to make it easier to identify a block.
+	 * These can be any of WordPress’ Dashicons, or a custom svg element.
+	 */
+	icon: 'welcome-add-page',
+
+	/**
+	 * Optional block extended support features.
+	 */
+	supports: {
+		// Removes support for an HTML mode.
+		html: false,
+	},
+
+	/**
+	 * The edit function describes the structure of your block in the context of the editor.
+	 * This represents what the editor will render when the block is used.
+	 *
+	 * @see https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#edit
+	 *
+	 * @param {Object} [props] Properties passed from the editor.
+	 *
+	 * @return {WPElement} Element to render.
+	 */
+
+	attributes: {
+		blockClass: {
+			type: 'string',
+		},
+		blockID: {
+			type: 'string',
+		},
+		sectionClass: {
+			type: 'string',
+		}
+	},
+
+
+	edit: (props) => {
+		const {
+			className,
+			attributes: { blockClass, blockID, sectionClass },
+			setAttributes,
+		} = props;
+		setAttributes({ blockClass: 'epPostText' });
+		const onIdChange = (newValue) => {
+			props.setAttributes({
+				blockID: newValue,
+			});
+		};
+		const onClassChange = (newValue) => {
+			props.setAttributes({
+				sectionClass: newValue,
+			});
+		};
+		return (
+			<div id={blockID} className={classnames(className, blockClass, sectionClass)}>
+				<InspectorControls>
+					<PanelBody title={__('Container ID and class')}>
+						<PlainText
+							className='ec-attr-edit-textarea'
+							value={blockID}
+							onChange={onIdChange}
+						/>
+						<PlainText
+							className='ec-attr-edit-textarea'
+							value={sectionClass}
+							onChange={onClassChange}
+						/>
+					</PanelBody>
+				</InspectorControls>
+				<InnerBlocks
+					renderAppender={() => (
+						<InnerBlocks.ButtonBlockAppender />
+					)}
+				/>
+			</div>
+		);
+	},
+
+	/**
+	 * The save function defines the way in which the different attributes should be combined
+	 * into the final markup, which is then serialized by the block editor into `post_content`.
+	 *
+	 * @see https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#save
+	 *
+	 * @return {WPElement} Element to render.
+	 */
+	save(props) {
+		const {
+			className,
+			attributes: { blockClass, blockID, sectionClass },
+		} = props;
+		return (
+			<div id={blockID} className={classnames(className, blockClass, sectionClass)}>
+				<InnerBlocks.Content />
+			</div>
 		);
 	},
 });
