@@ -273,6 +273,17 @@
 	padding: 8px;
 }
 
+.wp-block-ecoparts-blocks-ep-intro-header {
+	background-color: rgb(124, 4, 4);
+	padding: 16px;
+	box-sizing: border-box;
+}
+
+.wp-block-ecoparts-blocks-ep-intro-header > * {
+	background-color: lightgray;
+	padding: 8px;
+}
+
 .wp-block-ecoparts-blocks-ep-single-button {
 	background-color: rgb(110, 110, 110);
 	padding: 16px;
@@ -315,3 +326,46 @@
 	background-color: lightgray;
 	padding: 8px;
 }
+
+.wp-block-ecoparts-blocks-ep-team {
+	border: 1px dashed #000000;
+	background-color: rgb(110, 110, 110);
+	padding: 16px;
+}
+
+.wp-block-ecoparts-blocks-ep-team > * {
+	background-color: lightgray;
+	padding: 8px;
+}
+
+.wp-block-ecoparts-blocks-ep-team img {
+	width: 100%;
+	height: auto;
+}
+
+.wp-block-ecoparts-blocks-ep-team button {
+	width: 100%;
+	height: auto;
+}
+
+.wp-block-ecoparts-blocks-ep-team-textblock {
+	border: 1px dashed #000000;
+	background-color: rgb(110, 110, 110);
+	padding: 16px;
+}
+
+.wp-block-ecoparts-blocks-ep-team-textblock > * {
+	background-color: lightgray;
+	padding: 8px;
+}
+
+.wp-block-ecoparts-blocks-ep-contact-form {
+	background-color: rgb(219, 187, 4);
+	padding: 16px;
+}
+.wp-block-ecoparts-blocks-ep-contact-form > * {
+	background-color: lightgray;
+	padding: 8px;
+}
+
+

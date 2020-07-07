@@ -634,18 +634,36 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])('eco
   attributes: {
     blockClass: {
       type: 'string'
+    },
+    outerClass: {
+      type: 'string'
     }
   },
   edit: function edit(props) {
     var className = props.className,
-        blockClass = props.attributes.blockClass,
+        _props$attributes5 = props.attributes,
+        blockClass = _props$attributes5.blockClass,
+        outerClass = _props$attributes5.outerClass,
         setAttributes = props.setAttributes;
     setAttributes({
       blockClass: 'containerOuter'
     });
+
+    var onOuterClassChange = function onOuterClassChange(newValue) {
+      props.setAttributes({
+        outerClass: newValue
+      });
+    };
+
     return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
-      className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(className, blockClass)
-    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["InnerBlocks"], {
+      className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(className, blockClass, outerClass)
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["InspectorControls"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["PanelBody"], {
+      title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["__"])('Outer class')
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["PlainText"], {
+      className: "ec-attr-edit-textarea",
+      value: outerClass,
+      onChange: onOuterClassChange
+    }))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["InnerBlocks"], {
       renderAppender: function renderAppender() {
         return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["InnerBlocks"].ButtonBlockAppender, null);
       }
@@ -662,9 +680,11 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])('eco
    */
   save: function save(props) {
     var className = props.className,
-        blockClass = props.attributes.blockClass;
+        _props$attributes6 = props.attributes,
+        blockClass = _props$attributes6.blockClass,
+        outerClass = _props$attributes6.outerClass;
     return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
-      className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(className, blockClass)
+      className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(className, blockClass, outerClass)
     }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["InnerBlocks"].Content, null));
   }
 });
@@ -727,11 +747,11 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])('eco
   },
   edit: function edit(props) {
     var className = props.className,
-        _props$attributes5 = props.attributes,
-        blockClass = _props$attributes5.blockClass,
-        innerWidth = _props$attributes5.innerWidth,
-        innerClass = _props$attributes5.innerClass,
-        isSlider = _props$attributes5.isSlider,
+        _props$attributes7 = props.attributes,
+        blockClass = _props$attributes7.blockClass,
+        innerWidth = _props$attributes7.innerWidth,
+        innerClass = _props$attributes7.innerClass,
+        isSlider = _props$attributes7.isSlider,
         setAttributes = props.setAttributes;
 
     var onInnerWidthChange = function onInnerWidthChange(newValue) {
@@ -803,11 +823,11 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])('eco
    */
   save: function save(props) {
     var className = props.className,
-        _props$attributes6 = props.attributes,
-        blockClass = _props$attributes6.blockClass,
-        innerWidth = _props$attributes6.innerWidth,
-        innerClass = _props$attributes6.innerClass,
-        isSlider = _props$attributes6.isSlider;
+        _props$attributes8 = props.attributes,
+        blockClass = _props$attributes8.blockClass,
+        innerWidth = _props$attributes8.innerWidth,
+        innerClass = _props$attributes8.innerClass,
+        isSlider = _props$attributes8.isSlider;
     return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
       className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(className, blockClass, innerClass),
       style: {
@@ -877,10 +897,10 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])('eco
   edit: function edit(props) {
     var className = props.className,
         backgroundImage = props.backgroundImage,
-        _props$attributes7 = props.attributes,
-        mediaID = _props$attributes7.mediaID,
-        mediaURL = _props$attributes7.mediaURL,
-        blockClass = _props$attributes7.blockClass,
+        _props$attributes9 = props.attributes,
+        mediaID = _props$attributes9.mediaID,
+        mediaURL = _props$attributes9.mediaURL,
+        blockClass = _props$attributes9.blockClass,
         setAttributes = props.setAttributes;
 
     var onSelectImage = function onSelectImage(media) {
@@ -926,10 +946,10 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])('eco
    */
   save: function save(props) {
     var className = props.className,
-        _props$attributes8 = props.attributes,
-        mediaID = _props$attributes8.mediaID,
-        mediaURL = _props$attributes8.mediaURL,
-        blockClass = _props$attributes8.blockClass;
+        _props$attributes10 = props.attributes,
+        mediaID = _props$attributes10.mediaID,
+        mediaURL = _props$attributes10.mediaURL,
+        blockClass = _props$attributes10.blockClass;
     return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
       className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(blockClass)
     }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("img", {
@@ -996,10 +1016,10 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])('eco
   },
   edit: function edit(props) {
     var className = props.className,
-        _props$attributes9 = props.attributes,
-        quoteText = _props$attributes9.quoteText,
-        quoteAuthor = _props$attributes9.quoteAuthor,
-        blockClass = _props$attributes9.blockClass,
+        _props$attributes11 = props.attributes,
+        quoteText = _props$attributes11.quoteText,
+        quoteAuthor = _props$attributes11.quoteAuthor,
+        blockClass = _props$attributes11.blockClass,
         setAttributes = props.setAttributes;
 
     var onChangeQuoteText = function onChangeQuoteText(value) {
@@ -1044,10 +1064,10 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])('eco
    */
   save: function save(props) {
     var className = props.className,
-        _props$attributes10 = props.attributes,
-        quoteText = _props$attributes10.quoteText,
-        quoteAuthor = _props$attributes10.quoteAuthor,
-        blockClass = _props$attributes10.blockClass;
+        _props$attributes12 = props.attributes,
+        quoteText = _props$attributes12.quoteText,
+        quoteAuthor = _props$attributes12.quoteAuthor,
+        blockClass = _props$attributes12.blockClass;
     return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
       className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(className, blockClass)
     }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["RichText"].Content, {
@@ -1105,46 +1125,41 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])('eco
    * @return {WPElement} Element to render.
    */
   attributes: {
-    blockText: {
-      source: 'html',
-      selector: '.text'
-    },
     blockClass: {
+      type: 'string'
+    },
+    containerClass: {
       type: 'string'
     }
   },
   edit: function edit(props) {
     var className = props.className,
-        _props$attributes11 = props.attributes,
-        blockHeader = _props$attributes11.blockHeader,
-        blockText = _props$attributes11.blockText,
-        blockClass = _props$attributes11.blockClass,
+        _props$attributes13 = props.attributes,
+        blockClass = _props$attributes13.blockClass,
+        containerClass = _props$attributes13.containerClass,
         setAttributes = props.setAttributes;
-
-    var onChangeBlockHeader = function onChangeBlockHeader(value) {
-      setAttributes({
-        blockHeader: value
-      });
-    };
-
-    var onChangeblockText = function onChangeblockText(value) {
-      setAttributes({
-        blockText: value
-      });
-    };
-
     setAttributes({
       blockClass: 'epInnerMenu'
     });
+
+    var onOuterClassChange = function onOuterClassChange(newValue) {
+      props.setAttributes({
+        containerClass: newValue
+      });
+    };
+
     return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
-      className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(className, blockClass)
-    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["RichText"], {
-      className: "text",
-      tagName: "div",
-      placeholder: "Enter text here",
-      multiline: "p",
-      value: blockText,
-      onChange: onChangeblockText
+      className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(className, blockClass, containerClass)
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["InspectorControls"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["PanelBody"], {
+      title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["__"])('Container class')
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["PlainText"], {
+      className: "ec-attr-edit-textarea",
+      value: containerClass,
+      onChange: onOuterClassChange
+    }))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["InnerBlocks"], {
+      renderAppender: function renderAppender() {
+        return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["InnerBlocks"].ButtonBlockAppender, null);
+      }
     }));
   },
 
@@ -1158,17 +1173,12 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])('eco
    */
   save: function save(props) {
     var className = props.className,
-        _props$attributes12 = props.attributes,
-        blockHeader = _props$attributes12.blockHeader,
-        blockText = _props$attributes12.blockText,
-        blockClass = _props$attributes12.blockClass;
+        _props$attributes14 = props.attributes,
+        blockClass = _props$attributes14.blockClass,
+        containerClass = _props$attributes14.containerClass;
     return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
-      className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(className, blockClass)
-    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["RichText"].Content, {
-      className: "text",
-      tagName: "div",
-      value: blockText
-    }));
+      className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(className, blockClass, containerClass)
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["InnerBlocks"].Content, null));
   }
 });
 Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])('ecoparts-blocks/ep-textblock', {
@@ -1233,11 +1243,11 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])('eco
   },
   edit: function edit(props) {
     var className = props.className,
-        _props$attributes13 = props.attributes,
-        blockHeader = _props$attributes13.blockHeader,
-        blockSubheader = _props$attributes13.blockSubheader,
-        blockText = _props$attributes13.blockText,
-        blockClass = _props$attributes13.blockClass,
+        _props$attributes15 = props.attributes,
+        blockHeader = _props$attributes15.blockHeader,
+        blockSubheader = _props$attributes15.blockSubheader,
+        blockText = _props$attributes15.blockText,
+        blockClass = _props$attributes15.blockClass,
         setAttributes = props.setAttributes;
 
     var onChangeBlockHeader = function onChangeBlockHeader(value) {
@@ -1295,11 +1305,11 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])('eco
    */
   save: function save(props) {
     var className = props.className,
-        _props$attributes14 = props.attributes,
-        blockHeader = _props$attributes14.blockHeader,
-        blockSubheader = _props$attributes14.blockSubheader,
-        blockText = _props$attributes14.blockText,
-        blockClass = _props$attributes14.blockClass;
+        _props$attributes16 = props.attributes,
+        blockHeader = _props$attributes16.blockHeader,
+        blockSubheader = _props$attributes16.blockSubheader,
+        blockText = _props$attributes16.blockText,
+        blockClass = _props$attributes16.blockClass;
     return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
       className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(className, blockClass)
     }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["RichText"].Content, {
@@ -1379,11 +1389,11 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])('eco
   },
   edit: function edit(props) {
     var className = props.className,
-        _props$attributes15 = props.attributes,
-        blockHeader = _props$attributes15.blockHeader,
-        blockSubheader = _props$attributes15.blockSubheader,
-        blockText = _props$attributes15.blockText,
-        blockClass = _props$attributes15.blockClass,
+        _props$attributes17 = props.attributes,
+        blockHeader = _props$attributes17.blockHeader,
+        blockSubheader = _props$attributes17.blockSubheader,
+        blockText = _props$attributes17.blockText,
+        blockClass = _props$attributes17.blockClass,
         setAttributes = props.setAttributes;
 
     var onChangeBlockHeader = function onChangeBlockHeader(value) {
@@ -1441,11 +1451,11 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])('eco
    */
   save: function save(props) {
     var className = props.className,
-        _props$attributes16 = props.attributes,
-        blockHeader = _props$attributes16.blockHeader,
-        blockSubheader = _props$attributes16.blockSubheader,
-        blockText = _props$attributes16.blockText,
-        blockClass = _props$attributes16.blockClass;
+        _props$attributes18 = props.attributes,
+        blockHeader = _props$attributes18.blockHeader,
+        blockSubheader = _props$attributes18.blockSubheader,
+        blockText = _props$attributes18.blockText,
+        blockClass = _props$attributes18.blockClass;
 
     if (!blockHeader) {
       return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
@@ -1573,16 +1583,16 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])('eco
   },
   edit: function edit(props) {
     var className = props.className,
-        _props$attributes17 = props.attributes,
-        eventHeader = _props$attributes17.eventHeader,
-        eventSubheader = _props$attributes17.eventSubheader,
-        eventDate = _props$attributes17.eventDate,
-        eventTime = _props$attributes17.eventTime,
-        textHeader = _props$attributes17.textHeader,
-        eventText = _props$attributes17.eventText,
-        blockCta = _props$attributes17.blockCta,
-        url = _props$attributes17.url,
-        blockClass = _props$attributes17.blockClass,
+        _props$attributes19 = props.attributes,
+        eventHeader = _props$attributes19.eventHeader,
+        eventSubheader = _props$attributes19.eventSubheader,
+        eventDate = _props$attributes19.eventDate,
+        eventTime = _props$attributes19.eventTime,
+        textHeader = _props$attributes19.textHeader,
+        eventText = _props$attributes19.eventText,
+        blockCta = _props$attributes19.blockCta,
+        url = _props$attributes19.url,
+        blockClass = _props$attributes19.blockClass,
         setAttributes = props.setAttributes;
 
     var onChangeEventHeader = function onChangeEventHeader(value) {
@@ -1697,16 +1707,16 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])('eco
    */
   save: function save(props) {
     var className = props.className,
-        _props$attributes18 = props.attributes,
-        eventHeader = _props$attributes18.eventHeader,
-        eventSubheader = _props$attributes18.eventSubheader,
-        eventDate = _props$attributes18.eventDate,
-        eventTime = _props$attributes18.eventTime,
-        textHeader = _props$attributes18.textHeader,
-        eventText = _props$attributes18.eventText,
-        blockCta = _props$attributes18.blockCta,
-        url = _props$attributes18.url,
-        blockClass = _props$attributes18.blockClass;
+        _props$attributes20 = props.attributes,
+        eventHeader = _props$attributes20.eventHeader,
+        eventSubheader = _props$attributes20.eventSubheader,
+        eventDate = _props$attributes20.eventDate,
+        eventTime = _props$attributes20.eventTime,
+        textHeader = _props$attributes20.textHeader,
+        eventText = _props$attributes20.eventText,
+        blockCta = _props$attributes20.blockCta,
+        url = _props$attributes20.url,
+        blockClass = _props$attributes20.blockClass;
     return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
       className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(className, blockClass)
     }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["RichText"].Content, {
@@ -1809,12 +1819,12 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])('eco
   },
   edit: function edit(props) {
     var className = props.className,
-        _props$attributes19 = props.attributes,
-        blockHeader = _props$attributes19.blockHeader,
-        blockText = _props$attributes19.blockText,
-        blockQuote = _props$attributes19.blockQuote,
-        blockCta = _props$attributes19.blockCta,
-        blockClass = _props$attributes19.blockClass,
+        _props$attributes21 = props.attributes,
+        blockHeader = _props$attributes21.blockHeader,
+        blockText = _props$attributes21.blockText,
+        blockQuote = _props$attributes21.blockQuote,
+        blockCta = _props$attributes21.blockCta,
+        blockClass = _props$attributes21.blockClass,
         setAttributes = props.setAttributes;
 
     var onChangeBlockHeader = function onChangeBlockHeader(value) {
@@ -1885,12 +1895,12 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])('eco
    */
   save: function save(props) {
     var className = props.className,
-        _props$attributes20 = props.attributes,
-        blockHeader = _props$attributes20.blockHeader,
-        blockText = _props$attributes20.blockText,
-        blockQuote = _props$attributes20.blockQuote,
-        blockCta = _props$attributes20.blockCta,
-        blockClass = _props$attributes20.blockClass;
+        _props$attributes22 = props.attributes,
+        blockHeader = _props$attributes22.blockHeader,
+        blockText = _props$attributes22.blockText,
+        blockQuote = _props$attributes22.blockQuote,
+        blockCta = _props$attributes22.blockCta,
+        blockClass = _props$attributes22.blockClass;
     return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
       className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(className, blockClass)
     }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["RichText"].Content, {
@@ -1989,15 +1999,15 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])('eco
   },
   edit: function edit(props) {
     var className = props.className,
-        _props$attributes21 = props.attributes,
-        blockHeader = _props$attributes21.blockHeader,
-        blockText = _props$attributes21.blockText,
-        mediaID = _props$attributes21.mediaID,
-        mediaURL = _props$attributes21.mediaURL,
-        buttonText = _props$attributes21.buttonText,
-        url = _props$attributes21.url,
-        direction = _props$attributes21.direction,
-        blockClass = _props$attributes21.blockClass,
+        _props$attributes23 = props.attributes,
+        blockHeader = _props$attributes23.blockHeader,
+        blockText = _props$attributes23.blockText,
+        mediaID = _props$attributes23.mediaID,
+        mediaURL = _props$attributes23.mediaURL,
+        buttonText = _props$attributes23.buttonText,
+        url = _props$attributes23.url,
+        direction = _props$attributes23.direction,
+        blockClass = _props$attributes23.blockClass,
         setAttributes = props.setAttributes;
 
     var onChangeBlockHeader = function onChangeBlockHeader(value) {
@@ -2111,15 +2121,15 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])('eco
    */
   save: function save(props) {
     var className = props.className,
-        _props$attributes22 = props.attributes,
-        blockHeader = _props$attributes22.blockHeader,
-        blockText = _props$attributes22.blockText,
-        mediaID = _props$attributes22.mediaID,
-        mediaURL = _props$attributes22.mediaURL,
-        url = _props$attributes22.url,
-        buttonText = _props$attributes22.buttonText,
-        direction = _props$attributes22.direction,
-        blockClass = _props$attributes22.blockClass;
+        _props$attributes24 = props.attributes,
+        blockHeader = _props$attributes24.blockHeader,
+        blockText = _props$attributes24.blockText,
+        mediaID = _props$attributes24.mediaID,
+        mediaURL = _props$attributes24.mediaURL,
+        url = _props$attributes24.url,
+        buttonText = _props$attributes24.buttonText,
+        direction = _props$attributes24.direction,
+        blockClass = _props$attributes24.blockClass;
     return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
       className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(className, blockClass, direction)
     }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
@@ -2213,12 +2223,12 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])('eco
   },
   edit: function edit(props) {
     var className = props.className,
-        _props$attributes23 = props.attributes,
-        blockHeader = _props$attributes23.blockHeader,
-        blockText = _props$attributes23.blockText,
-        buttonText = _props$attributes23.buttonText,
-        url = _props$attributes23.url,
-        blockClass = _props$attributes23.blockClass,
+        _props$attributes25 = props.attributes,
+        blockHeader = _props$attributes25.blockHeader,
+        blockText = _props$attributes25.blockText,
+        buttonText = _props$attributes25.buttonText,
+        url = _props$attributes25.url,
+        blockClass = _props$attributes25.blockClass,
         setAttributes = props.setAttributes;
 
     var onChangeBlockHeader = function onChangeBlockHeader(value) {
@@ -2286,12 +2296,12 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])('eco
    */
   save: function save(props) {
     var className = props.className,
-        _props$attributes24 = props.attributes,
-        blockHeader = _props$attributes24.blockHeader,
-        blockText = _props$attributes24.blockText,
-        url = _props$attributes24.url,
-        buttonText = _props$attributes24.buttonText,
-        blockClass = _props$attributes24.blockClass;
+        _props$attributes26 = props.attributes,
+        blockHeader = _props$attributes26.blockHeader,
+        blockText = _props$attributes26.blockText,
+        url = _props$attributes26.url,
+        buttonText = _props$attributes26.buttonText,
+        blockClass = _props$attributes26.blockClass;
     return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
       className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(className, blockClass)
     }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["RichText"].Content, {
@@ -2387,15 +2397,15 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])('eco
   },
   edit: function edit(props) {
     var className = props.className,
-        _props$attributes25 = props.attributes,
-        blockHeader = _props$attributes25.blockHeader,
-        blockText = _props$attributes25.blockText,
-        mediaID = _props$attributes25.mediaID,
-        mediaURL = _props$attributes25.mediaURL,
-        buttonText = _props$attributes25.buttonText,
-        url = _props$attributes25.url,
-        date = _props$attributes25.date,
-        blockClass = _props$attributes25.blockClass,
+        _props$attributes27 = props.attributes,
+        blockHeader = _props$attributes27.blockHeader,
+        blockText = _props$attributes27.blockText,
+        mediaID = _props$attributes27.mediaID,
+        mediaURL = _props$attributes27.mediaURL,
+        buttonText = _props$attributes27.buttonText,
+        url = _props$attributes27.url,
+        date = _props$attributes27.date,
+        blockClass = _props$attributes27.blockClass,
         setAttributes = props.setAttributes;
 
     var onChangeBlockHeader = function onChangeBlockHeader(value) {
@@ -2496,15 +2506,15 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])('eco
    */
   save: function save(props) {
     var className = props.className,
-        _props$attributes26 = props.attributes,
-        blockHeader = _props$attributes26.blockHeader,
-        blockText = _props$attributes26.blockText,
-        mediaID = _props$attributes26.mediaID,
-        mediaURL = _props$attributes26.mediaURL,
-        url = _props$attributes26.url,
-        buttonText = _props$attributes26.buttonText,
-        date = _props$attributes26.date,
-        blockClass = _props$attributes26.blockClass;
+        _props$attributes28 = props.attributes,
+        blockHeader = _props$attributes28.blockHeader,
+        blockText = _props$attributes28.blockText,
+        mediaID = _props$attributes28.mediaID,
+        mediaURL = _props$attributes28.mediaURL,
+        url = _props$attributes28.url,
+        buttonText = _props$attributes28.buttonText,
+        date = _props$attributes28.date,
+        blockClass = _props$attributes28.blockClass;
     return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
       className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(className, blockClass)
     }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
@@ -2597,11 +2607,11 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])('eco
   },
   edit: function edit(props) {
     var className = props.className,
-        _props$attributes27 = props.attributes,
-        mediaID = _props$attributes27.mediaID,
-        mediaURL = _props$attributes27.mediaURL,
-        url = _props$attributes27.url,
-        blockClass = _props$attributes27.blockClass,
+        _props$attributes29 = props.attributes,
+        mediaID = _props$attributes29.mediaID,
+        mediaURL = _props$attributes29.mediaURL,
+        url = _props$attributes29.url,
+        blockClass = _props$attributes29.blockClass,
         setAttributes = props.setAttributes;
 
     var onSelectImage = function onSelectImage(media) {
@@ -2653,11 +2663,11 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])('eco
    */
   save: function save(props) {
     var className = props.className,
-        _props$attributes28 = props.attributes,
-        mediaID = _props$attributes28.mediaID,
-        mediaURL = _props$attributes28.mediaURL,
-        url = _props$attributes28.url,
-        blockClass = _props$attributes28.blockClass;
+        _props$attributes30 = props.attributes,
+        mediaID = _props$attributes30.mediaID,
+        mediaURL = _props$attributes30.mediaURL,
+        url = _props$attributes30.url,
+        blockClass = _props$attributes30.blockClass;
     return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
       className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(className, blockClass)
     }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("a", {
@@ -2725,10 +2735,10 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])('eco
   },
   edit: function edit(props) {
     var className = props.className,
-        _props$attributes29 = props.attributes,
-        header = _props$attributes29.header,
-        subheader = _props$attributes29.subheader,
-        blockClass = _props$attributes29.blockClass,
+        _props$attributes31 = props.attributes,
+        header = _props$attributes31.header,
+        subheader = _props$attributes31.subheader,
+        blockClass = _props$attributes31.blockClass,
         setAttributes = props.setAttributes;
 
     var onChangeBlockHeader = function onChangeBlockHeader(value) {
@@ -2750,7 +2760,7 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])('eco
       className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(className, blockClass)
     }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["RichText"], {
       className: "header",
-      tagName: "h1",
+      tagName: "h2",
       placeholder: "Enter header here",
       value: header,
       onChange: onChangeBlockHeader
@@ -2773,17 +2783,17 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])('eco
    */
   save: function save(props) {
     var className = props.className,
-        _props$attributes30 = props.attributes,
-        header = _props$attributes30.header,
-        subheader = _props$attributes30.subheader,
-        blockClass = _props$attributes30.blockClass;
+        _props$attributes32 = props.attributes,
+        header = _props$attributes32.header,
+        subheader = _props$attributes32.subheader,
+        blockClass = _props$attributes32.blockClass;
 
     if (!subheader) {
       return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
         className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(className, blockClass)
       }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["RichText"].Content, {
         className: "header",
-        tagName: "h1",
+        tagName: "h2",
         value: header
       }));
     }
@@ -2792,7 +2802,7 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])('eco
       className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(className, blockClass)
     }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["RichText"].Content, {
       className: "header",
-      tagName: "h1",
+      tagName: "h2",
       value: header
     }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["RichText"].Content, {
       className: "subheader",
@@ -2856,10 +2866,10 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])('eco
   },
   edit: function edit(props) {
     var className = props.className,
-        _props$attributes31 = props.attributes,
-        header = _props$attributes31.header,
-        subheader = _props$attributes31.subheader,
-        blockClass = _props$attributes31.blockClass,
+        _props$attributes33 = props.attributes,
+        header = _props$attributes33.header,
+        subheader = _props$attributes33.subheader,
+        blockClass = _props$attributes33.blockClass,
         setAttributes = props.setAttributes;
 
     var onChangeBlockHeader = function onChangeBlockHeader(value) {
@@ -2881,7 +2891,7 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])('eco
       className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(className, blockClass)
     }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["RichText"], {
       className: "header",
-      tagName: "h1",
+      tagName: "h2",
       placeholder: "Enter header here",
       value: header,
       onChange: onChangeBlockHeader
@@ -2904,17 +2914,17 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])('eco
    */
   save: function save(props) {
     var className = props.className,
-        _props$attributes32 = props.attributes,
-        header = _props$attributes32.header,
-        subheader = _props$attributes32.subheader,
-        blockClass = _props$attributes32.blockClass;
+        _props$attributes34 = props.attributes,
+        header = _props$attributes34.header,
+        subheader = _props$attributes34.subheader,
+        blockClass = _props$attributes34.blockClass;
 
     if (!subheader) {
       return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
         className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(className, blockClass)
       }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["RichText"].Content, {
         className: "header",
-        tagName: "h1",
+        tagName: "h2",
         value: header
       }));
     }
@@ -2923,7 +2933,7 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])('eco
       className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(className, blockClass)
     }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["RichText"].Content, {
       className: "header",
-      tagName: "h1",
+      tagName: "h2",
       value: header
     }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["RichText"].Content, {
       className: "subheader",
@@ -2995,11 +3005,11 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])('eco
   },
   edit: function edit(props) {
     var className = props.className,
-        _props$attributes33 = props.attributes,
-        buttonText = _props$attributes33.buttonText,
-        url = _props$attributes33.url,
-        onClick = _props$attributes33.onClick,
-        blockClass = _props$attributes33.blockClass,
+        _props$attributes35 = props.attributes,
+        buttonText = _props$attributes35.buttonText,
+        url = _props$attributes35.url,
+        onClick = _props$attributes35.onClick,
+        blockClass = _props$attributes35.blockClass,
         setAttributes = props.setAttributes;
 
     var onChangeButtonText = function onChangeButtonText(value) {
@@ -3050,11 +3060,11 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])('eco
    */
   save: function save(props) {
     var className = props.className,
-        _props$attributes34 = props.attributes,
-        buttonText = _props$attributes34.buttonText,
-        url = _props$attributes34.url,
-        onClick = _props$attributes34.onClick,
-        blockClass = _props$attributes34.blockClass;
+        _props$attributes36 = props.attributes,
+        buttonText = _props$attributes36.buttonText,
+        url = _props$attributes36.url,
+        onClick = _props$attributes36.onClick,
+        blockClass = _props$attributes36.blockClass;
     return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("a", _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()({
       href: true,
       className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(className, blockClass, 'button'),
@@ -3124,11 +3134,11 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])("eco
   },
   edit: function edit(props) {
     var className = props.className,
-        _props$attributes35 = props.attributes,
-        mediaID = _props$attributes35.mediaID,
-        mediaURL = _props$attributes35.mediaURL,
-        alt = _props$attributes35.alt,
-        blockClass = _props$attributes35.blockClass,
+        _props$attributes37 = props.attributes,
+        mediaID = _props$attributes37.mediaID,
+        mediaURL = _props$attributes37.mediaURL,
+        alt = _props$attributes37.alt,
+        blockClass = _props$attributes37.blockClass,
         setAttributes = props.setAttributes;
 
     var onChangeAlt = function onChangeAlt(value) {
@@ -3182,10 +3192,10 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])("eco
    */
   save: function save(props) {
     var className = props.className,
-        _props$attributes36 = props.attributes,
-        mediaURL = _props$attributes36.mediaURL,
-        alt = _props$attributes36.alt,
-        blockClass = _props$attributes36.blockClass;
+        _props$attributes38 = props.attributes,
+        mediaURL = _props$attributes38.mediaURL,
+        alt = _props$attributes38.alt,
+        blockClass = _props$attributes38.blockClass;
     return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
       className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(className, blockClass)
     }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("img", {
@@ -3251,10 +3261,10 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])('eco
   },
   edit: function edit(props) {
     var className = props.className,
-        _props$attributes37 = props.attributes,
-        blockClass = _props$attributes37.blockClass,
-        blockID = _props$attributes37.blockID,
-        sectionClass = _props$attributes37.sectionClass,
+        _props$attributes39 = props.attributes,
+        blockClass = _props$attributes39.blockClass,
+        blockID = _props$attributes39.blockID,
+        sectionClass = _props$attributes39.sectionClass,
         setAttributes = props.setAttributes;
     setAttributes({
       blockClass: 'epPostText'
@@ -3302,14 +3312,696 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])('eco
    */
   save: function save(props) {
     var className = props.className,
-        _props$attributes38 = props.attributes,
-        blockClass = _props$attributes38.blockClass,
-        blockID = _props$attributes38.blockID,
-        sectionClass = _props$attributes38.sectionClass;
+        _props$attributes40 = props.attributes,
+        blockClass = _props$attributes40.blockClass,
+        blockID = _props$attributes40.blockID,
+        sectionClass = _props$attributes40.sectionClass;
     return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
       id: blockID,
       className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(className, blockClass, sectionClass)
     }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["InnerBlocks"].Content, null));
+  }
+});
+Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])('ecoparts-blocks/ep-team', {
+  /**
+   * This is the display title for your block, which can be translated with `i18n` functions.
+   * The block inserter will show this name.
+   */
+  title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["__"])('EP Team Member', 'ecoparts-blocks'),
+
+  /**
+   * This is a short description for your block, can be translated with `i18n` functions.
+   * It will be shown in the Block Tab in the Settings Sidebar.
+   */
+  description: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["__"])('Team Member', 'ecoparts-blocks'),
+
+  /**
+   * Blocks are grouped into categories to help users browse and discover them.
+   * The categories provided by core are `common`, `embed`, `formatting`, `layout` and `widgets`.
+   */
+  category: 'ecoparts-blocks',
+
+  /**
+   * An icon property should be specified to make it easier to identify a block.
+   * These can be any of WordPress’ Dashicons, or a custom svg element.
+   */
+  icon: 'admin-users',
+
+  /**
+   * Optional block extended support features.
+   */
+  supports: {
+    // Removes support for an HTML mode.
+    html: false
+  },
+
+  /**
+   * The edit function describes the structure of your block in the context of the editor.
+   * This represents what the editor will render when the block is used.
+   *
+   * @see https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#edit
+   *
+   * @param {Object} [props] Properties passed from the editor.
+   *
+   * @return {WPElement} Element to render.
+   */
+  attributes: {
+    name: {
+      source: 'text',
+      selector: '.name'
+    },
+    description: {
+      source: 'html',
+      selector: '.description'
+    },
+    position: {
+      source: 'text',
+      selector: '.position'
+    },
+    mediaID: {
+      type: 'number'
+    },
+    mediaURL: {
+      type: 'string',
+      source: 'attribute',
+      selector: '.image',
+      attribute: 'src'
+    },
+    blockClass: {
+      type: 'string'
+    }
+  },
+  edit: function edit(props) {
+    var className = props.className,
+        _props$attributes41 = props.attributes,
+        name = _props$attributes41.name,
+        position = _props$attributes41.position,
+        description = _props$attributes41.description,
+        mediaURL = _props$attributes41.mediaURL,
+        blockClass = _props$attributes41.blockClass,
+        mediaID = _props$attributes41.mediaID,
+        setAttributes = props.setAttributes;
+
+    var onChangeName = function onChangeName(value) {
+      setAttributes({
+        name: value
+      });
+    };
+
+    var onChangeDescription = function onChangeDescription(value) {
+      setAttributes({
+        description: value
+      });
+    };
+
+    var onChangePosition = function onChangePosition(value) {
+      setAttributes({
+        position: value
+      });
+    };
+
+    var onSelectImage = function onSelectImage(media) {
+      setAttributes({
+        mediaURL: media.url,
+        mediaID: media.id
+      });
+    };
+
+    setAttributes({
+      blockClass: 'epTeam'
+    });
+    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
+      className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(className, blockClass)
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["MediaUpload"], {
+      onSelect: onSelectImage,
+      allowedTypes: "image",
+      value: mediaID,
+      render: function render(_ref6) {
+        var open = _ref6.open;
+        return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["Button"], {
+          className: mediaID ? 'image-button' : 'button button-small',
+          onClick: open
+        }, !mediaID ? Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["__"])('Upload Image', 'ecoparts-blocks') : Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("img", {
+          src: mediaURL,
+          alt: name,
+          className: "image"
+        }));
+      }
+    })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["RichText"], {
+      className: "name",
+      tagName: "h3",
+      placeholder: "Enter name and surmane here",
+      value: name,
+      onChange: onChangeName
+    }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["RichText"], {
+      className: "description",
+      tagName: "div",
+      placeholder: "Enter description here",
+      multiline: "p",
+      value: description,
+      onChange: onChangeDescription
+    }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["RichText"], {
+      className: "position",
+      tagName: "p",
+      placeholder: "Enter work position",
+      value: position,
+      onChange: onChangePosition
+    }))));
+  },
+
+  /**
+   * The save function defines the way in which the different attributes should be combined
+   * into the final markup, which is then serialized by the block editor into `post_content`.
+   *
+   * @see https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#save
+   *
+   * @return {WPElement} Element to render.
+   */
+  save: function save(props) {
+    var className = props.className,
+        _props$attributes42 = props.attributes,
+        name = _props$attributes42.name,
+        position = _props$attributes42.position,
+        description = _props$attributes42.description,
+        mediaURL = _props$attributes42.mediaURL,
+        blockClass = _props$attributes42.blockClass;
+    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
+      className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(className, blockClass)
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
+      className: "imageContainer"
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("img", {
+      className: "image",
+      src: mediaURL,
+      alt: name
+    }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("h3", {
+      className: "name"
+    }, name), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("p", {
+      class: "position"
+    }, position)), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
+      className: "textContainer"
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["RichText"].Content, {
+      className: "description",
+      tagName: "div",
+      value: description
+    }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["RichText"].Content, {
+      className: "name",
+      tagName: "p",
+      value: name
+    })));
+  }
+});
+Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])('ecoparts-blocks/ep-team-textblock', {
+  /**
+   * This is the display title for your block, which can be translated with `i18n` functions.
+   * The block inserter will show this name.
+   */
+  title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["__"])('EP Team Textblock', 'ecoparts-blocks'),
+
+  /**
+   * This is a short description for your block, can be translated with `i18n` functions.
+   * It will be shown in the Block Tab in the Settings Sidebar.
+   */
+  description: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["__"])('Team Textblock', 'ecoparts-blocks'),
+
+  /**
+   * Blocks are grouped into categories to help users browse and discover them.
+   * The categories provided by core are `common`, `embed`, `formatting`, `layout` and `widgets`.
+   */
+  category: 'ecoparts-blocks',
+
+  /**
+   * An icon property should be specified to make it easier to identify a block.
+   * These can be any of WordPress’ Dashicons, or a custom svg element.
+   */
+  icon: 'id',
+
+  /**
+   * Optional block extended support features.
+   */
+  supports: {
+    // Removes support for an HTML mode.
+    html: false
+  },
+
+  /**
+   * The edit function describes the structure of your block in the context of the editor.
+   * This represents what the editor will render when the block is used.
+   *
+   * @see https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#edit
+   *
+   * @param {Object} [props] Properties passed from the editor.
+   *
+   * @return {WPElement} Element to render.
+   */
+  attributes: {
+    description: {
+      source: 'html',
+      selector: '.description'
+    },
+    blockClass: {
+      type: 'string'
+    }
+  },
+  edit: function edit(props) {
+    var className = props.className,
+        _props$attributes43 = props.attributes,
+        name = _props$attributes43.name,
+        position = _props$attributes43.position,
+        description = _props$attributes43.description,
+        mediaURL = _props$attributes43.mediaURL,
+        blockClass = _props$attributes43.blockClass,
+        mediaID = _props$attributes43.mediaID,
+        setAttributes = props.setAttributes;
+
+    var onChangeDescription = function onChangeDescription(value) {
+      setAttributes({
+        description: value
+      });
+    };
+
+    setAttributes({
+      blockClass: 'epTeamTextblock'
+    });
+    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
+      className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(className, blockClass)
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["RichText"], {
+      className: "description",
+      tagName: "div",
+      placeholder: "Enter description here",
+      multiline: "p",
+      value: description,
+      onChange: onChangeDescription
+    }))));
+  },
+
+  /**
+   * The save function defines the way in which the different attributes should be combined
+   * into the final markup, which is then serialized by the block editor into `post_content`.
+   *
+   * @see https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#save
+   *
+   * @return {WPElement} Element to render.
+   */
+  save: function save(props) {
+    var className = props.className,
+        _props$attributes44 = props.attributes,
+        description = _props$attributes44.description,
+        blockClass = _props$attributes44.blockClass;
+    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
+      className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(className, blockClass)
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
+      className: "textContainer"
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["RichText"].Content, {
+      className: "description",
+      tagName: "div",
+      value: description
+    })));
+  }
+});
+Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])('ecoparts-blocks/ep-contact-form', {
+  /**
+   * This is the display title for your block, which can be translated with `i18n` functions.
+   * The block inserter will show this name.
+   */
+  title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["__"])('EP Contact Form', 'ecoparts-blocks'),
+
+  /**
+   * This is a short description for your block, can be translated with `i18n` functions.
+   * It will be shown in the Block Tab in the Settings Sidebar.
+   */
+  description: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["__"])('Contact Form', 'ecoparts-blocks'),
+
+  /**
+   * Blocks are grouped into categories to help users browse and discover them.
+   * The categories provided by core are `common`, `embed`, `formatting`, `layout` and `widgets`.
+   */
+  category: 'ecoparts-blocks',
+
+  /**
+   * An icon property should be specified to make it easier to identify a block.
+   * These can be any of WordPress’ Dashicons, or a custom svg element.
+   */
+  icon: 'email',
+
+  /**
+   * Optional block extended support features.
+   */
+  supports: {
+    // Removes support for an HTML mode.
+    html: false
+  },
+
+  /**
+   * The edit function describes the structure of your block in the context of the editor.
+   * This represents what the editor will render when the block is used.
+   *
+   * @see https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#edit
+   *
+   * @param {Object} [props] Properties passed from the editor.
+   *
+   * @return {WPElement} Element to render.
+   */
+  attributes: {
+    blockClass: {
+      type: 'string'
+    },
+    language: {
+      type: 'string'
+    },
+    buttonText: {
+      source: 'text',
+      selector: '.button'
+    },
+    namePlaceholder: {
+      source: 'text',
+      selector: '.name'
+    },
+    emailPlaceholder: {
+      source: 'text',
+      selector: '.email'
+    },
+    phonePlaceholder: {
+      source: 'text',
+      selector: '.phone'
+    },
+    textareaPlaceholder: {
+      source: 'text',
+      selector: '.textarea'
+    },
+    error: {
+      source: 'text',
+      selector: '.error'
+    },
+    success: {
+      source: 'text',
+      selector: '.success'
+    }
+  },
+  edit: function edit(props) {
+    var className = props.className,
+        _props$attributes45 = props.attributes,
+        blockClass = _props$attributes45.blockClass,
+        language = _props$attributes45.language,
+        namePlaceholder = _props$attributes45.namePlaceholder,
+        emailPlaceholder = _props$attributes45.emailPlaceholder,
+        phonePlaceholder = _props$attributes45.phonePlaceholder,
+        textareaPlaceholder = _props$attributes45.textareaPlaceholder,
+        buttonText = _props$attributes45.buttonText,
+        error = _props$attributes45.error,
+        success = _props$attributes45.success,
+        setAttributes = props.setAttributes;
+
+    var onLanguageChange = function onLanguageChange(newValue) {
+      props.setAttributes({
+        language: newValue
+      });
+    };
+
+    var onButtonTextChange = function onButtonTextChange(newValue) {
+      props.setAttributes({
+        buttonText: newValue
+      });
+    };
+
+    var onChangeNamePlaceholder = function onChangeNamePlaceholder(newValue) {
+      props.setAttributes({
+        namePlaceholder: newValue
+      });
+    };
+
+    var onChangeEmailPlaceholder = function onChangeEmailPlaceholder(newValue) {
+      props.setAttributes({
+        emailPlaceholder: newValue
+      });
+    };
+
+    var onChangePhonePlaceholder = function onChangePhonePlaceholder(newValue) {
+      props.setAttributes({
+        phonePlaceholder: newValue
+      });
+    };
+
+    var onChangeTextareaPlaceholder = function onChangeTextareaPlaceholder(newValue) {
+      props.setAttributes({
+        textareaPlaceholder: newValue
+      });
+    };
+
+    var onChangeError = function onChangeError(newValue) {
+      props.setAttributes({
+        error: newValue
+      });
+    };
+
+    var onChangeSuccess = function onChangeSuccess(newValue) {
+      props.setAttributes({
+        success: newValue
+      });
+    };
+
+    setAttributes({
+      blockClass: 'epContactForm'
+    });
+    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
+      className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(className, blockClass)
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["InspectorControls"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__["SelectControl"], {
+      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["__"])('Language', 'ecoparts-blocks'),
+      value: language,
+      options: [{
+        label: 'German',
+        value: 'DE'
+      }, {
+        label: 'English',
+        value: 'EN'
+      }],
+      onChange: onLanguageChange
+    })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["RichText"], {
+      className: "namePlaceholder",
+      tagName: "p",
+      placeholder: "Enter placeholder for name input",
+      value: namePlaceholder,
+      onChange: onChangeNamePlaceholder
+    }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["RichText"], {
+      className: "emailPlaceholder",
+      tagName: "p",
+      placeholder: "Enter placeholder for email input",
+      value: emailPlaceholder,
+      onChange: onChangeEmailPlaceholder
+    }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["RichText"], {
+      className: "phonePlaceholder",
+      tagName: "p",
+      placeholder: "Enter placeholder for phone input",
+      value: phonePlaceholder,
+      onChange: onChangePhonePlaceholder
+    }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["RichText"], {
+      className: "textareaPlaceholder",
+      tagName: "p",
+      placeholder: "Enter placeholder for textarea",
+      value: textareaPlaceholder,
+      onChange: onChangeTextareaPlaceholder
+    }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["RichText"], {
+      className: "buttonText",
+      tagName: "p",
+      placeholder: "Enter button text",
+      value: buttonText,
+      onChange: onButtonTextChange
+    }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["RichText"], {
+      className: "error",
+      tagName: "p",
+      placeholder: "Enter error note",
+      value: error,
+      onChange: onChangeError
+    }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["RichText"], {
+      className: "success",
+      tagName: "p",
+      placeholder: "Enter success note",
+      value: success,
+      onChange: onChangeSuccess
+    }));
+  },
+
+  /**
+   * The save function defines the way in which the different attributes should be combined
+   * into the final markup, which is then serialized by the block editor into `post_content`.
+   *
+   * @see https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#save
+   *
+   * @return {WPElement} Element to render.
+   */
+  save: function save(props) {
+    var className = props.className,
+        _props$attributes46 = props.attributes,
+        blockClass = _props$attributes46.blockClass,
+        language = _props$attributes46.language,
+        namePlaceholder = _props$attributes46.namePlaceholder,
+        emailPlaceholder = _props$attributes46.emailPlaceholder,
+        phonePlaceholder = _props$attributes46.phonePlaceholder,
+        textareaPlaceholder = _props$attributes46.textareaPlaceholder,
+        buttonText = _props$attributes46.buttonText,
+        error = _props$attributes46.error,
+        success = _props$attributes46.success;
+    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
+      className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(className, blockClass)
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["RichText"].Content, {
+      className: "name",
+      tagName: "p",
+      value: namePlaceholder
+    }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["RichText"].Content, {
+      className: "email",
+      tagName: "p",
+      value: emailPlaceholder
+    }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["RichText"].Content, {
+      className: "phone",
+      tagName: "p",
+      value: phonePlaceholder
+    }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["RichText"].Content, {
+      className: "textarea",
+      tagName: "p",
+      value: textareaPlaceholder
+    }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["RichText"].Content, {
+      className: "button",
+      tagName: "p",
+      value: buttonText
+    }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["RichText"].Content, {
+      className: "error",
+      tagName: "p",
+      value: error
+    }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["RichText"].Content, {
+      className: "success",
+      tagName: "p",
+      value: success
+    }));
+  }
+});
+Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_2__["registerBlockType"])('ecoparts-blocks/ep-intro-header', {
+  /**
+   * This is the display title for your block, which can be translated with `i18n` functions.
+   * The block inserter will show this name.
+   */
+  title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["__"])('EP Intro Header', 'ecoparts-blocks'),
+
+  /**
+   * This is a short description for your block, can be translated with `i18n` functions.
+   * It will be shown in the Block Tab in the Settings Sidebar.
+   */
+  description: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__["__"])('Intro Header', 'ecoparts-blocks'),
+
+  /**
+   * Blocks are grouped into categories to help users browse and discover them.
+   * The categories provided by core are `common`, `embed`, `formatting`, `layout` and `widgets`.
+   */
+  category: 'ecoparts-blocks',
+
+  /**
+   * An icon property should be specified to make it easier to identify a block.
+   * These can be any of WordPress’ Dashicons, or a custom svg element.
+   */
+  icon: 'carrot',
+
+  /**
+   * Optional block extended support features.
+   */
+  supports: {
+    // Removes support for an HTML mode.
+    html: false
+  },
+
+  /**
+   * The edit function describes the structure of your block in the context of the editor.
+   * This represents what the editor will render when the block is used.
+   *
+   * @see https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#edit
+   *
+   * @param {Object} [props] Properties passed from the editor.
+   *
+   * @return {WPElement} Element to render.
+   */
+  attributes: {
+    header: {
+      source: 'html',
+      selector: '.header'
+    },
+    subheader: {
+      source: 'html',
+      selector: '.subheader'
+    }
+  },
+  edit: function edit(props) {
+    var className = props.className,
+        _props$attributes47 = props.attributes,
+        header = _props$attributes47.header,
+        subheader = _props$attributes47.subheader,
+        blockClass = _props$attributes47.blockClass,
+        setAttributes = props.setAttributes;
+
+    var onChangeBlockHeader = function onChangeBlockHeader(value) {
+      setAttributes({
+        header: value
+      });
+    };
+
+    var onChangeBlockSubheader = function onChangeBlockSubheader(value) {
+      setAttributes({
+        subheader: value
+      });
+    };
+
+    setAttributes({
+      blockClass: 'introHeader'
+    });
+    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
+      className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(className, blockClass)
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["RichText"], {
+      className: "header",
+      tagName: "h2",
+      placeholder: "Enter header here",
+      value: header,
+      onChange: onChangeBlockHeader
+    }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["RichText"], {
+      className: "subheader",
+      tagName: "h3",
+      placeholder: "Enter subheader here",
+      value: subheader,
+      onChange: onChangeBlockSubheader
+    }));
+  },
+
+  /**
+   * The save function defines the way in which the different attributes should be combined
+   * into the final markup, which is then serialized by the block editor into `post_content`.
+   *
+   * @see https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#save
+   *
+   * @return {WPElement} Element to render.
+   */
+  save: function save(props) {
+    var className = props.className,
+        _props$attributes48 = props.attributes,
+        header = _props$attributes48.header,
+        subheader = _props$attributes48.subheader,
+        blockClass = _props$attributes48.blockClass;
+
+    if (!subheader) {
+      return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
+        className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(className, blockClass)
+      }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["RichText"].Content, {
+        className: "header",
+        tagName: "h2",
+        value: header
+      }));
+    }
+
+    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
+      className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(className, blockClass)
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["RichText"].Content, {
+      className: "header",
+      tagName: "h2",
+      value: header
+    }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["RichText"].Content, {
+      className: "subheader",
+      tagName: "h3",
+      value: subheader
+    }));
   }
 });
 
